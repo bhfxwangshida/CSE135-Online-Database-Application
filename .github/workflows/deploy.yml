@@ -13,6 +13,6 @@ jobs:
           PORT: ${{ secrets.PORT }}
           PASSWORD: ${{ secrets.PASSWORD }}
         with:
-          source: "hi/*"
-          target: "/home/adam/test"
+          source: "public_html/*"
+          target: "/var/www/felixwangsd.xyz/public_html"
           strip_components: 1
