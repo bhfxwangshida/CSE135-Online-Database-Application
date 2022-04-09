@@ -4,14 +4,51 @@ For CSE135(sp22) at UCSD.
 This repo uses Github Action to deploy to our web server continuously.
 Content under the public_html directory will be synchronized to the server. 
 
-## Github-deploy
-### github link
-https://github.com/bhfxwangshida/CSE135-Online-Database-Analytics-Application
-
 ## Employ password protection
 ### password
 user: felix, adam, grader
 password: cse135Go
+
+## Link to our website
+https://felixwangsd.xyz
+
+
+## Details of Github auto deploy setup
+### Github link
+https://github.com/daixi98/CSE135
+
+# Github Action
+
+## Create Action
+Create .github/workflows/deploy.yml
+## deploy.yml
+```
+name: website deployment
+on: [push]
+jobs:  
+  deploy:    
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: deploy website to example.com
+        uses: appleboy/scp-action@master
+        env:
+          HOST: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PORT: ${{ secrets.PORT }}
+          KEY: ${{ secrets.KEY }}
+        with:
+          source: "dest/*"
+          target: "/var/www/example.com/public_html"
+          strip_components: 1
+```
+
+## Configure env variables for Github Action
+Go to Setting -> Secret.  
+Config environment variables.  
+
+
+
 
 ## Configuring Access Control within the Virtual Host Definition
   <Directory "/var/www/felixwangsd.xyz/public_html">
