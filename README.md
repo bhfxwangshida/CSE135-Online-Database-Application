@@ -17,11 +17,11 @@ https://felixwangsd.xyz
 ### Github link
 https://github.com/daixi98/CSE135
 
-# Github Action
-
-## Create Action
+## Github Action
+We use Github Action for auto deploy. After each push, Github Action will connect to our server and use "scp" command to sync.
+### Create Action
 Create .github/workflows/deploy.yml
-## deploy.yml
+### deploy.yml
 ```
 name: website deployment
 on: [push]
@@ -45,7 +45,7 @@ jobs:
 
 ## Configure env variables for Github Action
 Go to Setting -> Secret.  
-Config environment variables.  
+Configure environment variables, which are used to connect our server. 
 
 
 
