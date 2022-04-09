@@ -4,19 +4,18 @@ For CSE135(sp22) at UCSD.
 This repo uses Github Action to deploy to our web server continuously.
 Content under the public_html directory will be synchronized to the server. 
 
-## Employ password protection
-### password
-user: felix, adam, grader
-password: cse135Go
 
-## Link to our website
+# Password
+user: grader  
+password: PLEASE CHECK IN OUR SUBMISSION - README.md 
+
+# Link to our website
 https://felixwangsd.xyz
 
 
-## Details of Github auto deploy setup
+# Details of Github auto deploy setup
 ### Github link
 https://github.com/daixi98/CSE135
-
 ## Github Action
 We use Github Action for auto deploy. After each push, Github Action will connect to our server and use "scp" command to sync.
 ### Create Action
@@ -42,38 +41,29 @@ jobs:
           target: "/var/www/example.com/public_html"
           strip_components: 1
 ```
-
 ## Configure env variables for Github Action
 Go to Setting -> Secret.  
 Configure environment variables, which are used to connect our server. 
 
+# Username/password for logging into the site
+user: grader   
+password: PLEASE CHECK IN OUR SUBMISSION - README.md   
 
+# Summary of changes to HTML file in DevTools after compression
+  The html shrinks from 1.3KB to 978B after compression. However, the images remains the same, this is because the images are already compressed.
 
+# Summary of removing 'server' header
+$ sudo apt install libapache2-mod-security2  
 
-## Configuring Access Control within the Virtual Host Definition
-  <Directory "/var/www/felixwangsd.xyz/public_html">
-      AuthType Basic
-      AuthName "Restricted Content"
-      AuthUserFile /etc/apache2/.htpasswd
-      Require valid-user
-  </Directory>
+$ sudo a2enmod security2  
 
-## Compress Textual Content
-  The html shrinks from 1.3kb to 978b after compression. However, the images remains the same, this is because the images are already compressed.
+$ sudo vim /etc/apache2/conf-available/security.conf  
 
-## Obscure server identity
-$ sudo apt install libapache2-mod-security2
+```
+ServerTokens Full  
+ServerSignature Off  
+SecRuleEngine on  
+SecServerSignature "CSE135 Server"  
+```
 
-$ sudo a2enmod security2
-
-$ sudo vim /etc/apache2/conf-available/security.conf
-
-ServerTokens Full
-
-ServerSignature Off
-
-SecRuleEngine on
-
-SecServerSignature "CSE135 Server"
-
-$ sudo systemctl restart apache2
+$ sudo systemctl restart apache2  
