@@ -17,7 +17,7 @@
                 if(!is_null($name)){
                     echo "<p><b>Name:</b>" . $name;
                 }else if (!is_null($usercookie) && ($usercookie!= "destroyed")) {
-
+                    echo "<p><b>Name:</b>" . $usercookie;
                 } else {
                     echo "<p><b>Name:</b> You do not have a name set</p>";
                 }
