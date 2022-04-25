@@ -12,7 +12,6 @@
         <h1 align=center>PHP Sessions Page 1</h1>
         <hr/>
         <p>
-            <b>Name:</b>
             <?php
                 if(!is_null($name)){
                     echo "<p><b>Name:</b>" . $name;
@@ -23,7 +22,7 @@
             ?>
         </p>
         
-        <a href="/cgi-bin/php-sessions-2.php">Session Page 2</a>
+        <a href="/cgi-bin/php-sessions-2.php">Session Page 2</a> <br />
         <a href="/php-cgiform.html">CGI Form</a><br />
         <form style="margin-top:30px" action="/cgi-bin/php-destroy-session.php" method="get">
             <button type="submit">Destroy Session</button>
