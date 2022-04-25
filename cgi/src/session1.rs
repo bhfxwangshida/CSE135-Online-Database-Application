@@ -14,8 +14,9 @@ fn write_stdout_s( msg : &str ) {
  
 fn main() -> io::Result<()>{ 
 
-    let mut buffer = Vec::new();
-    io::stdin().read(&mut buffer)?;
+    let mut name = String::new();
+    let stdin = io::stdin();
+    stdin.lock().read_line(&mut name).unwrap();
     let mut sortedmap : BTreeMap<String,String> = BTreeMap::new();
     for (key, value) in env::vars() {
         sortedmap.insert( key, value );
@@ -25,17 +26,13 @@ fn main() -> io::Result<()>{
     write_stdout_s("Cache-Control: no-cache\n");
 
     // Get Name from Environment
-    let mut username = Vec::new();
-    let len = io::stdin().read(&mut username)?;
 
     // Check to see if a proper name was sent
-    
-    let name = &username[..len];
-    let s = std::str::from_utf8(name).unwrap();
+    let s = name;
     
 
     // Set the cookie using a header, add extra \n to end headers
-    if s.len() > 0 {
+    if s.len() >= 0 {
         write_stdout_s("Content-type: text/html\n");
         write_stdout(format!("Set-Cookie: {:?}\n\n", s));
     } else {
@@ -50,7 +47,7 @@ fn main() -> io::Result<()>{
     write_stdout_s("<table>");
 
     // First check for new Cookie, then Check for old Cookie
-    if len > 0 {
+    if s.len() > 0 {
         write_stdout(format!("<tr><td>Cookie:</td><td>{:?}</td></tr>\n", s));
     } else if sortedmap.get("HTTP_COOKIE").is_some() && sortedmap.get("HTTP_COOKIE").unwrap() != "destroyed" {
             write_stdout(format!("<tr><td>Cookie:</td><td>{}</td></tr>\n", sortedmap.get("HTTP_COOKIE").unwrap()));
