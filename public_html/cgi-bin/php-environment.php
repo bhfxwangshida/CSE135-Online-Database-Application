@@ -14,7 +14,9 @@
         
         <ul>
             <?php
-                $_ENV=getenv();
+                foreach($_SERVER as $k => $v){
+                    echo "<b>" . $k . "</b>: " . $v . "</br>";
+                }
                 foreach($_ENV as $k => $v){
                     echo "<b>" . $k . "</b>: " . $v . "</br>";
                 }
