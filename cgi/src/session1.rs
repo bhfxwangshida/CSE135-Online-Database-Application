@@ -30,7 +30,7 @@ fn main() -> io::Result<()>{
 
     // Check to see if a proper name was sent
     
-    let name = &username[9..len];
+    let name = &username[..len];
     let s = std::str::from_utf8(name).unwrap();
     
 
