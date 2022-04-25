@@ -13,9 +13,10 @@ fn write_stdout_s( msg : &str ) {
 
  
 fn main() -> io::Result<()>{ 
+    let mut buffer = String::new();
+    let stdin = io::stdin();
+    stdin.lock().read_line(&mut buffer).unwrap();
 
-     let mut buffer = Vec::new();
-    io::stdin().read(&mut buffer)?;
     let mut sortedmap : BTreeMap<String,String> = BTreeMap::new();
     for (key, value) in env::vars() {
         sortedmap.insert( key, value );
