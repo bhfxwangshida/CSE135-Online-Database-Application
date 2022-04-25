@@ -1,4 +1,4 @@
-use std::io::{Write, self, Read, BufRead};
+use std::io::{Write, self, BufRead};
 use std::env;
 use std::collections::btree_map::BTreeMap;
  
@@ -35,7 +35,7 @@ fn main() -> io::Result<()>{
     
 
     // Set the cookie using a header, add extra \n to end headers
-    if s.len() >= 0 {
+    if s.len() > 0 {
         write_stdout_s("Content-type: text/html\n");
         write_stdout(format!("Set-Cookie: {:?}\n\n", s));
     } else {
