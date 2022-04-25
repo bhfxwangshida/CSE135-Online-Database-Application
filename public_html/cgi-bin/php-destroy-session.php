@@ -1,11 +1,11 @@
 <?php
-    setcookie("cookie","destroyed",time()+3600);
+    setcookie("username","destroyed",time()+3600);
 ?>
 <html>
     <head>
         <title>PHP Session Destroyed</title>
     </head>
-    
+
     <body>
         <h1>Session Destroyed</h1>
         <a href="/php-cgiform.html">Back to the PHP CGI Form</a>
