@@ -28,7 +28,10 @@ fn main() -> io::Result<()>{
     // Get Name from Environment
 
     // Check to see if a proper name was sent
-    let s = name;
+    let mut s = name;
+    if s.starts_with("username") {
+        s = s[9..].to_string();
+    }
     
 
     // Set the cookie using a header, add extra \n to end headers
