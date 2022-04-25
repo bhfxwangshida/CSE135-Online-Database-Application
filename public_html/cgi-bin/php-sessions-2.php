@@ -7,7 +7,7 @@
         <hr/>
             <p>
                 <?php
-                    $username=$_COOKIE['username'];
+                    $username=$_COOKIE[username];
                     echo "<p><b>Name:</b>" . $username;
                     
                 ?>
