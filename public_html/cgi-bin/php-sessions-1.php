@@ -13,9 +13,12 @@
         <hr/>
         <p>
             <?php
+                $usercookie=$_COOKIE['username'];
                 if(!is_null($name)){
                     echo "<p><b>Name:</b>" . $name;
-                }else{
+                }else if (!is_null($usercookie) && ($usercookie!= "destroyed")) {
+
+                } else {
                     echo "<p><b>Name:</b> You do not have a name set</p>";
                 }
                 
