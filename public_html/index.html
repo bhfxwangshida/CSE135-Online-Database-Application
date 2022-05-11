@@ -8,8 +8,15 @@
       var userLang = navigator.language || navigator.userLanguage;
       $(document).ready(function(){
         //$("#myButton").click(function(){
-        alert(userLang);
+        //alert(userLang);
         //});
+        $.post("/api/static/userinfo",
+        {
+          language: userLang,
+        },
+        function(data, status){
+          alert("Data: " + data + "\nStatus: " + status);
+        });
       });
     </script>
     
