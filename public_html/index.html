@@ -9,7 +9,7 @@
       $(document).ready(function(){
         $("#myButton").click(function(){
           //alert(userLang);
-          $.post("/api/static/userinfo.Json",
+          $.post("/api/static",
           {
             language: userLang,
           },
