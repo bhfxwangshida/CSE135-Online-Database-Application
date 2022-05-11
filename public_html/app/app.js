@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 3001
 
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -29,7 +29,7 @@ app.get('/get/language', (req, res) => {
 })
 
 
-app.post('/api/static/language', urlencodedParser, function (req, res) {
+app.post('/static', urlencodedParser, function (req, res) {
     mongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db("hw3");
