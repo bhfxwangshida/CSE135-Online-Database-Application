@@ -9,7 +9,6 @@ var mongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
 
 app.get('/get/language', (req, res) => {
-  var result = "";
   mongoClient.connect(url, (err, db) => {
       if (err) throw err;
       var dbo = db.db("hw3");
@@ -18,15 +17,15 @@ app.get('/get/language', (req, res) => {
       dbo.collection("static").find(whereStr).toArray(function(err, result) {
         if (err) throw err;
         console.log(result);
+        var response = {
+          "session":req.query.session,
+          "language":result
+      };
         db.close();
+        res.end(JSON.stringify(response));
       });
   });
-    var response = {
-        "session":req.query.session,
-        "language":result
-    };
-    res.end(JSON.stringify(response));
-
+    
 })
 
 
