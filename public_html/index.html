@@ -16,14 +16,14 @@
               { "session_id": session, "language": userLang }
             ]
           },
-          function(data, status){
-            alert("Data: " + data + "\nStatus: " + status + "sessionid: " + session);
+          function(data, status, session){
+            alert("Data: " + data + "\nStatus: " + status + "\nsessionid: " + session);
           })
           .done(function() {
-            alert( "second success" + ", sessionid: " + session);
+            alert( "second success" + "\nsessionid: " + session);
           })
           .fail(function() {
-            alert( "error" + ", sessionid: " + session);
+            alert( "error" + "\nsessionid: " + session);
           });
         });
       });
