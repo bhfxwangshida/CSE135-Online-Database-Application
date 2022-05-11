@@ -36,11 +36,11 @@
           function(data, status, session){
             alert("Data: " + data + "\nStatus: " + status + "\nsessionid: " + session);
           })
-          .done(function(session) {
-            alert( "second success" + "\nsessionid: " + session);
+          .done(function(session,img_enable) {
+            alert( "second success" + "\nsessionid: " + session + "\nimg_enable: " + img_enable);
           })
-          .fail(function(session) {
-            alert( "error" + "\nsessionid: " + session);
+          .fail(function(session,img_enable) {
+            alert( "error" + "\nsessionid: " + session+ "\nimg_enable: " + img_enable);
           });
         });
         $("#myButton_get").click(function(){
