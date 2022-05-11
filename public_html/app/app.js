@@ -36,17 +36,18 @@ app.post('/static', urlencodedParser, function (req, res) {
         var lango = { session: req.body.session, url: req.body.language };
         dbo.collection("static").insertOne(lango, function(err, res) {
             if (err) throw err;
+            var response = {
+              "session":req.body.session,
+              "language":req.body.language,
+              "result":"success"
+            };
+       
             db.close();
+            res.end(JSON.stringify(response));
         });
     });
 
-    var response = {
-        "session":req.body.session,
-        "language":req.body.language,
-        "result":"success"
-    };
 
-    res.end(JSON.stringify(response));
 })
 
 app.listen(port, () => {
