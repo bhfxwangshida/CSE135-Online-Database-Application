@@ -15,6 +15,15 @@
           },
           function(data, status){
             alert("Data: " + data + "\nStatus: " + status);
+          })
+          .done(function() {
+            alert( "second success" );
+          })
+          .fail(function() {
+            alert( "error" );
+          })
+          .always(function() {
+            alert( "finished" );
           });
         });
       });
