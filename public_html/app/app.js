@@ -30,6 +30,7 @@ app.get('/get/language', (req, res) => {
 
 
 app.post('/static', urlencodedParser, function (req, res) {
+  console.log(req.sessionID);
     mongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db("hw3");
