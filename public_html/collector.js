@@ -28,6 +28,21 @@ $(document).ready(function(){
 //var session = $('#session').val();
 var session = "<%= Session[\"UserName\"]%>"
     $("#myButton_post").click(function(){
+        //performance
+        $.post("https://felixwangsd.xyz/api/performance",
+        { "session_id": session, "timing_obj": timing_obj, "start_time":start_time,
+         "end_time": end_time, "load_time": load_time
+        },
+        function(){
+            alert("post performance");
+        })
+        .done(function(session,img_enable,load_time) {
+        alert( "success" + "\nsessionid: " + session + "\nimg_enable: " + img_enable 
+        + "\nload_time: " + load_time);
+        })
+        .fail(function(session,load_time) {
+        alert( "error" + "\nsessionid: " + session+ "\nload_time: " + load_time);
+        });
         //static
         $.post("https://felixwangsd.xyz/api/static",
         { "session_id": session, "language": userLang, "img_enable":img_enable,
@@ -43,21 +58,6 @@ var session = "<%= Session[\"UserName\"]%>"
         })
         .fail(function(session,img_enable) {
         alert( "error" + "\nsessionid: " + session+ "\nimg_enable: " + img_enable);
-        });
-        //performance
-        $.post("https://felixwangsd.xyz/api/performance",
-        { "session_id": session, "timing_obj": timing_obj, "start_time":start_time,
-         "end_time": end_time, "load_time": load_time
-        },
-        function(){
-            alert("post performance");
-        })
-        .done(function(session,img_enable,load_time) {
-        alert( "success" + "\nsessionid: " + session + "\nimg_enable: " + img_enable 
-        + "\nload_time: " + load_time);
-        })
-        .fail(function(session,load_time) {
-        alert( "error" + "\nsessionid: " + session+ "\nload_time: " + load_time);
         });
     });
     /*$("#myButton_get").click(function(){
