@@ -5,9 +5,10 @@
     <HEAD>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript">
+      var userLang = navigator.language || navigator.userLanguage;
       $(document).ready(function(){
         //$("#myButton").click(function(){
-        alert("HELLO WORLD!!");
+        alert(userLang);
         //});
       });
     </script>
