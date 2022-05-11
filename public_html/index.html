@@ -5,12 +5,21 @@
     <HEAD>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript">
+      var userLang = navigator.language || navigator.userLanguage;
       $(document).ready(function(){
-        alert("HELLO WORLD!!");
+        //$("#myButton").click(function(){
+        //alert(userLang);
+        //});
+        $.post("/api/static/userinfo",
+        {
+          language: userLang,
+        },
+        function(data, status){
+          alert("Data: " + data + "\nStatus: " + status);
+        });
       });
     </script>
     
-
     <meta charset="utf-8"/>
     <TITLE>main page</TITLE>
     <link rel="shortcut icon" type="image/jpg" href="assets/img/favicon.jpeg"/>
@@ -56,23 +65,21 @@
         </style>
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-226843654-1"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-226843654-1"></script>
+      <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-        gtag('config', 'UA-226843654-1');
-        </script>
-        <script src="https://cdn.lr-ingest.io/LogRocket.min.js" crossorigin="anonymous"></script>
-        <script>
-          window.LogRocket && window.LogRocket.init('ofthjm/cse135');
-        </script>
-
+      gtag('config', 'UA-226843654-1');
+      </script>
+      <script src="https://cdn.lr-ingest.io/LogRocket.min.js" crossorigin="anonymous"></script>
+      <script>
+        window.LogRocket && window.LogRocket.init('ofthjm/cse135');
+      </script>
     </HEAD>
     
     <BODY>
-
     <H1>CSE135</H1>
     
     <div class="teammem">
