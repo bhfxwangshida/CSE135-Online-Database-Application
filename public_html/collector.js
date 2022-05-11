@@ -1,3 +1,8 @@
+///////performance variables///////
+var timing_obj = window.performance;
+var start_time = timing_obj.navigationStart;
+var end_time = timing_obj.loadEventEnd;
+var load_time = end_time-start_time;
 ///////static variables///////
 var user_agent = navigator.userAgent;
 var userLang = navigator.language || navigator.userLanguage;
@@ -23,13 +28,14 @@ $(document).ready(function(){
 //var session = $('#session').val();
 var session = "<%= Session[\"UserName\"]%>"
     $("#myButton_post").click(function(){
+        //static
         $.post("https://felixwangsd.xyz/api/static",
         { "session_id": session, "language": userLang, "img_enable":img_enable,
          "cookie": cookie_enable, "user_agent": user_agent, "user_screen_height":user_screen_height,
         "user_screen_width":user_screen_width, "user_window_height":user_window_height,
         "user_window_width":user_window_width,"user_conn_type":user_conn_type
         },
-        function(data, status, session){
+        function(){
         })
         .done(function(session,img_enable,user_conn_type) {
         alert( "success" + "\nsessionid: " + session + "\nimg_enable: " + img_enable 
@@ -37,6 +43,20 @@ var session = "<%= Session[\"UserName\"]%>"
         })
         .fail(function(session,img_enable) {
         alert( "error" + "\nsessionid: " + session+ "\nimg_enable: " + img_enable);
+        });
+        //performance
+        $.post("https://felixwangsd.xyz/api/performance",
+        { "session_id": session, "timing_obj": timing_obj, "start_time":start_time,
+         "end_time": end_time, "load_time": load_time
+        },
+        function(){
+        })
+        .done(function(session,img_enable,load_time) {
+        alert( "success" + "\nsessionid: " + session + "\nimg_enable: " + img_enable 
+        + "\nload_time: " + load_time);
+        })
+        .fail(function(session,load_time) {
+        alert( "error" + "\nsessionid: " + session+ "\nload_time: " + load_time);
         });
     });
     /*$("#myButton_get").click(function(){
