@@ -17,13 +17,13 @@
             ]
           },
           function(data, status){
-            alert("Data: " + data + "\nStatus: " + status);
+            alert("Data: " + data + "\nStatus: " + status + "sessionid: " + session);
           })
           .done(function() {
-            alert( "second success" );
+            alert( "second success" + ", sessionid: " + session);
           })
           .fail(function() {
-            alert( "error" );
+            alert( "error" + ", sessionid: " + session);
           });
         });
       });
