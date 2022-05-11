@@ -19,7 +19,7 @@ app.get('/get/language', (req, res) => {
         console.log(result);
         var response = {
           "session":req.query.session,
-          "language":result.language
+          "language":result[0].language
       };
         db.close();
         res.end(JSON.stringify(response));
