@@ -50,6 +50,7 @@ var session = "<%= Session[\"UserName\"]%>"
          "end_time": end_time, "load_time": load_time
         },
         function(){
+            alert("post performance");
         })
         .done(function(session,img_enable,load_time) {
         alert( "success" + "\nsessionid: " + session + "\nimg_enable: " + img_enable 
