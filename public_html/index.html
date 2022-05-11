@@ -3,13 +3,6 @@
 <HTML lang="en">
 
     <HEAD>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function(){
-        alert("HELLO WORLD!!");
-      });
-    </script>
-    
 
     <meta charset="utf-8"/>
     <TITLE>main page</TITLE>
@@ -56,23 +49,31 @@
         </style>
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-226843654-1"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-226843654-1"></script>
+      <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-        gtag('config', 'UA-226843654-1');
-        </script>
-        <script src="https://cdn.lr-ingest.io/LogRocket.min.js" crossorigin="anonymous"></script>
-        <script>
-          window.LogRocket && window.LogRocket.init('ofthjm/cse135');
-        </script>
+      gtag('config', 'UA-226843654-1');
+      </script>
+      <script src="https://cdn.lr-ingest.io/LogRocket.min.js" crossorigin="anonymous"></script>
+      <script>
+        window.LogRocket && window.LogRocket.init('ofthjm/cse135');
+      </script>
 
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script type="text/javascript">
+        $(document).ready(function(){
+          $("#myButton").click(function(){
+          alert("HELLO WORLD!!");
+          });
+        });
+      </script>
     </HEAD>
     
     <BODY>
-
+      <button id="myButton">Click Here</button>
     <H1>CSE135</H1>
     
     <div class="teammem">
