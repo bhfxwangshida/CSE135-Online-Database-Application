@@ -5,23 +5,49 @@ const port = 3000
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
-app.get('/get/demo', (req, res) => {
-  var response = {
-    "first_name":req.query.first_name,
-    "last_name":req.query.last_name
-};
-res.end(JSON.stringify(response));
-})
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017";
 
-app.post('/api/static/language', urlencodedParser, function (req, res) {
- 
+app.get('/get/language', (req, res) => {
+  MongoClient.connect(url, function(err, db) {
+      if (err) throw err;
+      var dbo = db.db("hw3");
+      var whereStr = {"session":req.body.session};
+      dbo.collection("static").find(whereStr).toArray(function(err, result) {
+        if (err) throw err;
+        console.log(result);
+        db.close();
+    });
+  });
     var response = {
-        "first_name":req.body.first_name,
-        "language":req.body.language
+        "session":req.query.session,
+        "language":result
     };
     res.end(JSON.stringify(response));
- })
+
+})
+
+
+app.post('/api/static/language', urlencodedParser, function (req, res) {
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("hw3");
+        var lango = { session: req.body.session, url: req.body.language };
+        dbo.collection("static").insertOne(lango, function(err, res) {
+            if (err) throw err;
+            db.close();
+        });
+    });
+
+    var response = {
+        "session":req.body.session,
+        "language":req.body.language,
+        "result":"success"
+    };
+
+    res.end(JSON.stringify(response));
+})
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+    console.log(`Example app listening on port ${port}`)
 })
