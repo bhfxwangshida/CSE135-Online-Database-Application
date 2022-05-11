@@ -7,9 +7,9 @@
     <script type="text/javascript">
       var userLang = navigator.language || navigator.userLanguage;
       $(document).ready(function(){
-        $("#myButton").click(function(){
+        $("#myButton_post").click(function(){
           //alert(userLang);
-          $.post("/api/static",
+          $.post(":3001/static",
           {
             language: userLang,
           },
@@ -86,7 +86,7 @@
     </HEAD>
     
     <BODY>
-      <button id="myButton">Click Here</button>
+      <button id="myButton_post">Click Here to post</button>
     <H1>CSE135</H1>
     
     <div class="teammem">
