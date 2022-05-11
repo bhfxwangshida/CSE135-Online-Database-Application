@@ -38,12 +38,12 @@ var session = "<%= Session[\"UserName\"]%>"
         alert( "error" + "\nsessionid: " + session+ "\nimg_enable: " + img_enable);
         });
     });
-    $("#myButton_get").click(function(){
+    /*$("#myButton_get").click(function(){
         $.get("https://felixwangsd.xyz/api/get/language?session=", function(data, status){
         alert("Data: " + data + "\nStatus: " + status);
         })
         .fail(function(data, status) {
         alert( "error" + "\nData: " + data + "\nStatus: " + status);
         });
-    });
+    });*/
 });
