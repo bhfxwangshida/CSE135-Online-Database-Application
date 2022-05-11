@@ -5,11 +5,12 @@ const port = 3000
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017";
+var mongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
 
 app.get('/get/language', (req, res) => {
-  MongoClient.connect(url, function(err, db) {
+  var result = "";
+  mongoClient.connect(url, (err, db) => {
       if (err) throw err;
       var dbo = db.db("hw3");
       var whereStr = {"session":req.body.session};
@@ -18,7 +19,7 @@ app.get('/get/language', (req, res) => {
         if (err) throw err;
         console.log(result);
         db.close();
-    });
+      });
   });
     var response = {
         "session":req.query.session,
@@ -30,7 +31,7 @@ app.get('/get/language', (req, res) => {
 
 
 app.post('/api/static/language', urlencodedParser, function (req, res) {
-    MongoClient.connect(url, function(err, db) {
+    mongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db("hw3");
         var lango = { session: req.body.session, url: req.body.language };
