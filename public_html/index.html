@@ -19,10 +19,10 @@
           function(data, status, session){
             alert("Data: " + data + "\nStatus: " + status + "\nsessionid: " + session);
           })
-          .done(function() {
+          .done(function(session) {
             alert( "second success" + "\nsessionid: " + session);
           })
-          .fail(function() {
+          .fail(function(session) {
             alert( "error" + "\nsessionid: " + session);
           });
         });
