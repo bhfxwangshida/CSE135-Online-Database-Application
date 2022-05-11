@@ -13,8 +13,8 @@ app.get('/get/language', (req, res) => {
   mongoClient.connect(url, (err, db) => {
       if (err) throw err;
       var dbo = db.db("hw3");
-      var whereStr = {"session":req.body.session};
-      console.log(req.body.session);
+      var whereStr = {"session":req.query.session};
+      console.log(req.query.session);
       dbo.collection("static").find(whereStr).toArray(function(err, result) {
         if (err) throw err;
         console.log(result);
