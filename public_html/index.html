@@ -7,20 +7,23 @@
     <script type="text/javascript">
       var userLang = navigator.language || navigator.userLanguage;
       $(document).ready(function(){
+        var session = $('#session').val();
         $("#myButton_post").click(function(){
           //alert(userLang);
           $.post("https://felixwangsd.xyz/api/static",
           {
-            language: userLang,
+            "static": [
+              { "session_id": session, "language": userLang }
+            ]
           },
-          function(data, status){
-            alert("Data: " + data + "\nStatus: " + status);
+          function(data, status, session){
+            alert("Data: " + data + "\nStatus: " + status + "\nsessionid: " + session);
           })
-          .done(function() {
-            alert( "second success" );
+          .done(function(session) {
+            alert( "second success" + "\nsessionid: " + session);
           })
-          .fail(function() {
-            alert( "error" );
+          .fail(function(session) {
+            alert( "error" + "\nsessionid: " + session);
           });
         });
       });
