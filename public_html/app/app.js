@@ -13,6 +13,7 @@ app.get('/get/language', (req, res) => {
       if (err) throw err;
       var dbo = db.db("hw3");
       var whereStr = {"session":req.body.session};
+      console.log(req.body.session);
       dbo.collection("static").find(whereStr).toArray(function(err, result) {
         if (err) throw err;
         console.log(result);
