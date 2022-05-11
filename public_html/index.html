@@ -7,11 +7,14 @@
     <script type="text/javascript">
       var userLang = navigator.language || navigator.userLanguage;
       $(document).ready(function(){
+        var session = $('#session').val();
         $("#myButton_post").click(function(){
           //alert(userLang);
           $.post("https://felixwangsd.xyz/api/static",
           {
-            language: userLang,
+            "static": [
+              { "session_id": session, "language": userLang }
+            ]
           },
           function(data, status){
             alert("Data: " + data + "\nStatus: " + status);
