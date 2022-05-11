@@ -9,7 +9,8 @@ var user_screen_height = window.screen.height;
 var user_screen_width = window.screen.width;
 var user_window_height = $(window).height();
 var user_window_width = $(window).width();
-var user_conn_type = navigator.connection.effectiveType;
+var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+var user_conn_type = conn.effectiveType;
 //check user image enable
 window.addEventListener("load", event => {
 var image = document.querySelector('img');
