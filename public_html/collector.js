@@ -1,8 +1,9 @@
 ///////performance variables///////
-var timing_obj = window.performance;
+var timing_obj = window.performance.timing;
 var start_time = timing_obj.navigationStart;
 var end_time = timing_obj.loadEventEnd;
 var load_time = end_time-start_time;
+
 ///////static variables///////
 var user_agent = navigator.userAgent;
 var userLang = navigator.language || navigator.userLanguage;
@@ -22,6 +23,8 @@ var image = document.querySelector('img');
 img_enable = image.complete && image.naturalHeight !== 0;
 alert(img_enable);
 });
+
+
 
 /////////jquery post & get///////////
 $(document).ready(function(){
