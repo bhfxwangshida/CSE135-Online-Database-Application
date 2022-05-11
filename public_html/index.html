@@ -28,11 +28,7 @@
         $("#myButton_post").click(function(){
           //alert(userLang);
           $.post("https://felixwangsd.xyz/api/static",
-          {
-            "static": [
-              { "session_id": session, "language": userLang, "img_enable":img_enable }
-            ]
-          },
+          { "session_id": session, "language": userLang, "img_enable":img_enable },
           function(data, status, session){
             alert("Data: " + data + "\nStatus: " + status + "\nsessionid: " + session);
           })
