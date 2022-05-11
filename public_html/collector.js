@@ -32,7 +32,7 @@ $(document).ready(function(){
 var session = "<%= Session[\"UserName\"]%>"
     $("#myButton_post").click(function(){
         //performance
-        $.post("https://felixwangsd.xyz/api/performance",
+        /*$.post("https://felixwangsd.xyz/api/performance",
         { "session_id": session, "timing_obj": timing_obj, "start_time":start_time,
          "end_time": end_time, "load_time": load_time
         },
@@ -44,7 +44,7 @@ var session = "<%= Session[\"UserName\"]%>"
         })
         .fail(function(session,load_time) {
         alert( "error" + "\nsessionid: " + session + "\nload_time: " + load_time);
-        });
+        });*/
         //static
         $.post("https://felixwangsd.xyz/api/static",
         { "session_id": session, "language": userLang, "img_enable":img_enable,
