@@ -27,7 +27,7 @@
         var session = "<%= Session[\"UserName\"]%>"
         $("#myButton_post").click(function(){
           //alert(userLang);
-          $.post("https://felixwangsd.xyz/api",
+          $.post("https://felixwangsd.xyz/api/static",
           {
             "static": [
               { "session_id": session, "language": userLang }
