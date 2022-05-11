@@ -36,12 +36,11 @@ var session = "<%= Session[\"UserName\"]%>"
         function(){
             alert("post performance");
         })
-        .done(function(session,img_enable,load_time) {
-        alert( "success" + "\nsessionid: " + session + "\nimg_enable: " + img_enable 
-        + "\nload_time: " + load_time);
+        .done(function(session,load_time) {
+        alert( "success" + "\nsessionid: " + session + "\nload_time: " + load_time);
         })
         .fail(function(session,load_time) {
-        alert( "error" + "\nsessionid: " + session+ "\nload_time: " + load_time);
+        alert( "error" + "\nsessionid: " + session + "\nload_time: " + load_time);
         });
         //static
         $.post("https://felixwangsd.xyz/api/static",
