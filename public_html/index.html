@@ -7,15 +7,15 @@
     <script type="text/javascript">
       var userLang = navigator.language || navigator.userLanguage;
       $(document).ready(function(){
-        //$("#myButton").click(function(){
-        //alert(userLang);
-        //});
-        $.post("/api/static/userinfo",
-        {
-          language: userLang,
-        },
-        function(data, status){
-          alert("Data: " + data + "\nStatus: " + status);
+        $("#myButton").click(function(){
+          //alert(userLang);
+          $.post("/api/static/userinfo.Json",
+          {
+            language: userLang,
+          },
+          function(data, status){
+            alert("Data: " + data + "\nStatus: " + status);
+          });
         });
       });
     </script>
@@ -80,6 +80,7 @@
     </HEAD>
     
     <BODY>
+      <button id="myButton">Click Here</button>
     <H1>CSE135</H1>
     
     <div class="teammem">
