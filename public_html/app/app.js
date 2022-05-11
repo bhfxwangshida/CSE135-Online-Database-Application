@@ -35,12 +35,12 @@ app.post('/static', urlencodedParser, function (req, res) {
         if (err) throw err;
         var dbo = db.db("hw3");
         var lango = { session: req.body.session, url: req.body.language };
-        dbo.collection("static").insertOne(lango, function(err, res) {
+        dbo.collection("static").insertOne(lango, function(err, result) {
             if (err) throw err;
             var response = {
               "session":req.body.session,
               "language":req.body.language,
-              "result":"success"
+              "result":result
             };
        
             db.close();
