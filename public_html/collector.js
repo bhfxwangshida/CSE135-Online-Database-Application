@@ -1,8 +1,8 @@
 ///////performance variables///////
-var timing_obj = window.performance.timing;
+/*var timing_obj = window.performance.timing;
 var start_time = timing_obj.navigationStart;
 var end_time = timing_obj.loadEventEnd;
-var load_time = end_time-start_time;
+var load_time = end_time-start_time;*/
 
 ///////static variables///////
 var user_agent = navigator.userAgent;
