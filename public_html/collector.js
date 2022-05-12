@@ -1,9 +1,13 @@
 ///////performance variables///////
 //var timing_obj = window.performance.timing;
-var start_time = window.performance.timing.navigationStart;
-var end_time = window.performance.timing.loadEventEnd;
-var load_time = end_time-start_time;
-
+var start_time = perfEntries[0].domContentLoadedEventStart;
+var end_time = perfEntries[0].domContentLoadedEventEnd;
+//var load_time = end_time-start_time;
+var perfEntries = performance.getEntriesByType("navigation");
+var load_time = perfEntries[0].domContentLoadedEventEnd - perfEntries[0].domContentLoadedEventStart
+console.log(load_time)
+console.log(start_time)
+console.log(end_time)
 ///////static variables///////
 var user_agent = navigator.userAgent;
 var userLang = navigator.language || navigator.userLanguage;
