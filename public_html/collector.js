@@ -7,6 +7,7 @@ var load_time = end_time-start_time;
 console.log(load_time);
 console.log(start_time);
 console.log(end_time);
+console.log(timing_obj);
 ///////static variables///////
 var user_agent = navigator.userAgent;
 var userLang = navigator.language || navigator.userLanguage;
@@ -36,7 +37,7 @@ var session = "<%= Session[\"UserName\"]%>"
     $("#myButton_post").click(function(){
         //performance
         $.post("https://felixwangsd.xyz/api/performance",
-        { "session_id": session, "timing_obj": timing_obj, "start_time":start_time,
+        { "session_id": session, "timing_obj": timing_obj.toJSON(), "start_time":start_time,
          "end_time": end_time, "load_time": load_time
         },
         function(){
