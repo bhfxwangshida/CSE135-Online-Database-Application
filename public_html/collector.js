@@ -32,42 +32,42 @@ alert(img_enable);
 
 /////////jquery post & get///////////
 $(document).ready(function(){
-//var session = $('#session').val();
-var session = "<%= Session[\"UserName\"]%>"
+//var cookieID = $('#cookieID').val();
+var cookieID = 1;
     $("#myButton_post").click(function(){
         //performance
         $.post("https://felixwangsd.xyz/api/performance",
-        { "session_id": session, "timing_obj": timing_obj.toJSON(), "start_time":start_time,
+        { "cookieID": cookieID, "timing_obj": timing_obj.toJSON(), "start_time":start_time,
          "end_time": end_time, "load_time": load_time
         },
         function(){
             alert("post performance");
         })
-        .done(function(session,load_time) {
-        alert( "success" + "\nsessionid: " + session + "\nload_time: " + load_time);
+        .done(function(cookieID,load_time) {
+        alert( "success" + "\ncookieID: " + cookieID + "\nload_time: " + load_time);
         })
-        .fail(function(session,load_time) {
-        alert( "error" + "\nsessionid: " + session + "\nload_time: " + load_time);
+        .fail(function(cookieID,load_time) {
+        alert( "error" + "\ncookieID: " + cookieID + "\nload_time: " + load_time);
         });
         //static
         $.post("https://felixwangsd.xyz/api/static",
-        { "session_id": session, "language": userLang, "img_enable":img_enable,
-         "cookie": cookie_enable, "user_agent": user_agent, "user_screen_height":user_screen_height,
+        { "cookieID": cookieID, "language": userLang, "img_enable":img_enable,
+         "cookie_enable": cookie_enable, "user_agent": user_agent, "user_screen_height":user_screen_height,
         "user_screen_width":user_screen_width, "user_window_height":user_window_height,
         "user_window_width":user_window_width,"user_conn_type":user_conn_type
         },
         function(){
         })
-        .done(function(session,img_enable,user_conn_type) {
-        alert( "success" + "\nsessionid: " + session + "\nimg_enable: " + img_enable 
+        .done(function(cookieID,img_enable,user_conn_type) {
+        alert( "success" + "\ncookieID: " + cookieID + "\nimg_enable: " + img_enable 
         + "\nuser_conn_type: " + user_conn_type);
         })
-        .fail(function(session,img_enable) {
-        alert( "error" + "\nsessionid: " + session+ "\nimg_enable: " + img_enable);
+        .fail(function(cookieID,img_enable) {
+        alert( "error" + "\ncookieID: " + cookieID+ "\nimg_enable: " + img_enable);
         });
     });
     /*$("#myButton_get").click(function(){
-        $.get("https://felixwangsd.xyz/api/get/language?session=", function(data, status){
+        $.get("https://felixwangsd.xyz/api/get/language?cookieID=", function(data, status){
         alert("Data: " + data + "\nStatus: " + status);
         })
         .fail(function(data, status) {
