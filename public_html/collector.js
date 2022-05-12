@@ -1,8 +1,8 @@
 ///////performance variables///////
-var timing_obj = window.performance.timing;
-//var start_time = timing_obj.navigationStart;
-//var end_time = timing_obj.loadEventEnd;
-//var load_time = end_time-start_time;
+//var timing_obj = window.performance.timing;
+var start_time = window.performance.timing.navigationStart;
+var end_time = window.performance.timing.loadEventEnd;
+var load_time = end_time-start_time;
 
 ///////static variables///////
 var user_agent = navigator.userAgent;
@@ -30,9 +30,10 @@ alert(img_enable);
 $(document).ready(function(){
 //var session = $('#session').val();
 var session = "<%= Session[\"UserName\"]%>"
+var timing_obj = 1;
     $("#myButton_post").click(function(){
         //performance
-        /*$.post("https://felixwangsd.xyz/api/performance",
+        $.post("https://felixwangsd.xyz/api/performance",
         { "session_id": session, "timing_obj": timing_obj, "start_time":start_time,
          "end_time": end_time, "load_time": load_time
         },
@@ -44,7 +45,7 @@ var session = "<%= Session[\"UserName\"]%>"
         })
         .fail(function(session,load_time) {
         alert( "error" + "\nsessionid: " + session + "\nload_time: " + load_time);
-        });*/
+        });
         //static
         $.post("https://felixwangsd.xyz/api/static",
         { "session_id": session, "language": userLang, "img_enable":img_enable,
