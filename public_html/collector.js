@@ -1,13 +1,12 @@
 ///////performance variables///////
-//var timing_obj = window.performance.timing;
-var start_time = perfEntries[0].domContentLoadedEventStart;
-var end_time = perfEntries[0].domContentLoadedEventEnd;
-//var load_time = end_time-start_time;
-var perfEntries = performance.getEntriesByType("navigation");
-var load_time = perfEntries[0].domContentLoadedEventEnd - perfEntries[0].domContentLoadedEventStart
-console.log(load_time)
-console.log(start_time)
-console.log(end_time)
+var perfEntries = window.performance.getEntriesByType("navigation");
+var timing_obj = perfEntries[0];
+var start_time = timing_obj.loadEventStart;
+var end_time = timing_obj.loadEventEnd;
+var load_time = end_time-start_time;
+console.log(load_time);
+console.log(start_time);
+console.log(end_time);
 ///////static variables///////
 var user_agent = navigator.userAgent;
 var userLang = navigator.language || navigator.userLanguage;
@@ -34,7 +33,6 @@ alert(img_enable);
 $(document).ready(function(){
 //var session = $('#session').val();
 var session = "<%= Session[\"UserName\"]%>"
-var timing_obj = 1;
     $("#myButton_post").click(function(){
         //performance
         $.post("https://felixwangsd.xyz/api/performance",
