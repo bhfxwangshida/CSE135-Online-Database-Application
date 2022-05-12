@@ -1,3 +1,14 @@
+///////set cookie///////
+const uuid = require('uuid/v4');
+const id = uuid();
+const d = new Date();
+expiredays = 2;
+document.cookie = cookieID + "=" + id + ";expires=" + d.setTime(d.getTime() + expiredays*24*60*60*1000).toUTCString();
+///////get cookie///////
+let cookie = decodeURIComponent(document.cookie);
+let cookie_array = cookie.split(';');
+let idname = cookie_array[0].split('=');
+var cookieID = idname[1];
 ///////performance variables///////
 var perfEntries = window.performance.getEntriesByType("navigation");
 var timing_obj = perfEntries[0];
@@ -32,7 +43,6 @@ alert(img_enable);
 
 /////////jquery post & get///////////
 $(document).ready(function(){
-var cookieID = 1;
     $("#myButton_post").click(function(){
         //performance
         $.post("https://felixwangsd.xyz/api/performance",
