@@ -32,7 +32,6 @@ alert(img_enable);
 
 /////////jquery post & get///////////
 $(document).ready(function(){
-//var cookieID = $('#cookieID').val();
 var cookieID = 1;
     $("#myButton_post").click(function(){
         //performance
