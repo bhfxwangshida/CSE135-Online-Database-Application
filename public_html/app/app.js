@@ -54,9 +54,9 @@ app.post('/performance', urlencodedParser, function (req, res) {
   mongoClient.connect(url, function(err, db) {
       if (err) throw err;
       var dbo = db.db("hw3");
-      var staticinfo = { cookieID: req.body.cookieID, timing_obj: req.body.timing_obj, start_time: req.body.start_time,
+      var performanceinfo = { cookieID: req.body.cookieID, timing_obj: req.body.timing_obj, start_time: req.body.start_time,
       end_time: req.body.end_time, load_time: req.body.load_time};
-      dbo.collection("performance").insertOne(staticinfo, function(err, result) {
+      dbo.collection("performance").insertOne(performanceinfo, function(err, result) {
           if (err) throw err;
           var response = {
             "cookieID":req.body.cookieID,
