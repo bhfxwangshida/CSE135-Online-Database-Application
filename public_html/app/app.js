@@ -31,7 +31,7 @@ app.get('/static/:cookieid', (req, res) => {
   mongoClient.connect(url, (err, db) => {
     if (err) throw err;
     var dbo = db.db("hw3");
-    alert(req.params.cookieid);
+    console.log(req.params.cookieid);
     dbo.collection("customers").findOne(
       {cookieID : req.params.cookieid},
       function(err, result) {
