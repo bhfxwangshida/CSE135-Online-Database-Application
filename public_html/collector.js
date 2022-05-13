@@ -51,7 +51,7 @@ console.log(img_enable);
 //});
 
 ///////activity variables///////
-/* "use strict";
+"use strict";
 
 document.onmousemove = handleMouseMove;
 var mousePos = [];
@@ -78,14 +78,12 @@ function handleMouseMove(event) {
     }
 
     var point = {
-
         "x": event.pageX,
-        
         "y": event.pageY
-        
     };
-    mousePos.append(point);
-} */
+    mousePos.push(point);
+    alert(JSON.stringify(mousePos));
+} 
 
 
 /////////jquery post & get///////////
@@ -121,6 +119,7 @@ $(document).ready(function(){
         .fail(function(cookieID,img_enable) {
         alert( "error" + "\ncookieID: " + cookieID+ "\nimg_enable: " + img_enable);
         });
+
         $("#myButton_get").click(function(){
         $.get("https://felixwangsd.xyz/api/static/"+get_cookie, function(data, status){
         alert("Data: " + data + "\nStatus: " + status);
@@ -130,24 +129,15 @@ $(document).ready(function(){
         });
         });
     });
-/*     while (1){
-        setTimeout($.post("https://felixwangsd.xyz/api/activity",
-        { "mousePos": mousePos, "language": userLang, "img_enable":img_enable,
-         "cookie": cookie_enable, "user_agent": user_agent, "user_screen_height":user_screen_height,
-        "user_screen_width":user_screen_width, "user_window_height":user_window_height,
-        "user_window_width":user_window_width,"user_conn_type":user_conn_type
-        },
-        function(){
-        })
-        .done(function(session,img_enable,user_conn_type) {
-        mousePos = [];
-        alert( "success" + "\nsessionid: " + session + "\nimg_enable: " + img_enable 
-        + "\nuser_conn_type: " + user_conn_type);
-        })
-        .fail(function(session,img_enable) {
-        alert( "error" + "\nsessionid: " + session+ "\nimg_enable: " + img_enable);
-        }), 10000);
-    } */
+
+    
+    setInterval($.post("https://felixwangsd.xyz/api/activity",
+    { "cookieID": cookieID, "mousePos": JSON.stringify(mousePos)})
+    .done(function(session) {
+    mousePos = [];
+    alert( "success" + "\nsessionid: " + session);
+    }), 10000);
+    
 });
 
 
