@@ -32,8 +32,8 @@ app.get('/static/:cookieid', (req, res) => {
   mongoClient.connect(url, (err, db) => {
     if (err) throw err;
     var dbo = db.db("hw3");
-    console.log("connected "+req.params.cookieid);
-    dbo.collection("customers").findOne(
+    console.log("connect to collection: static, with cookie "+req.params.cookieid);
+    dbo.collection("static").findOne(
       {cookieID : req.params.cookieid},
       function(err, result) {
         if (err) throw err;
