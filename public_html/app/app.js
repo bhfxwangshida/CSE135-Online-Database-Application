@@ -27,12 +27,12 @@ var url = "mongodb://localhost:27017/";
   });
 })*/
 
-app.get('/static/:cookieID', (req, res) => {
+app.get('/static/:cookieid', (req, res) => {
   mongoClient.connect(url, (err, db) => {
     if (err) throw err;
     var dbo = db.db("hw3");
     dbo.collection("customers").findOne({
-      cookieID: req.params.cookieID
+      cookieID: cookieid
     },
     function(err, result) {
       if (err) throw err;
