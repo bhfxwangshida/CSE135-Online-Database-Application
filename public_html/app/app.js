@@ -28,7 +28,9 @@ var url = "mongodb://localhost:27017/";
 })*/
 
 app.get('/static/:cookieid', (req, res) => {
+  console.log("111");
   console.log(req.params);
+  res.json(req.params);
   mongoClient.connect(url, (err, db) => {
     if (err) throw err;
     var dbo = db.db("hw3");
@@ -45,6 +47,7 @@ app.get('/static/:cookieid', (req, res) => {
 })
 
 app.post('/static', urlencodedParser, function (req, res) {
+  console.log("222");
   console.log(req.cookieID);
   mongoClient.connect(url, function(err, db) {
       if (err) throw err;
