@@ -78,6 +78,14 @@
         let a = document.getElementById("frm1");
         let get_cookie = a.elements[0].value;
       }
+      $("#myButton_get").click(function(){
+        $.get("https://felixwangsd.xyz/api/static/"+get_cookie, function(data, status){
+        alert("Data: " + data + "\nStatus: " + status);
+        })
+        .fail(function(data, status) {
+        alert( "error" + "\nData: " + data + "\nStatus: " + status);
+        });
+      });
       </script>
       
     <H1>CSE135</H1>
