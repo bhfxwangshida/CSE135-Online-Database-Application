@@ -21,7 +21,7 @@ function setcookie(){
 ///////performance variables///////
 var perfEntries = window.performance.getEntriesByType("navigation");
 var timing_obj = perfEntries[0];
-var start_time = timing_obj.loadEventStart;
+var start_time = timing_obj.domContentLoadedEventStart;
 var end_time = timing_obj.loadEventEnd;
 var load_time = end_time-start_time;
 console.log(load_time);
