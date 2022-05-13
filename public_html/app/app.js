@@ -31,8 +31,7 @@ app.get('/static/:cookieid', (req, res) => {
   mongoClient.connect(url, (err, db) => {
     if (err) throw err;
     var dbo = db.db("hw3");
-    alert(req.params.cookieid);
-    dbo.collection("customers").findOne(
+    dbo.collection("static").findOne(
       {cookieID : req.params.cookieid},
       function(err, result) {
         if (err) throw err;
@@ -44,7 +43,7 @@ app.get('/static/:cookieid', (req, res) => {
 })
 
 app.post('/static', urlencodedParser, function (req, res) {
-  console.log(req.cookieID);
+
   mongoClient.connect(url, function(err, db) {
       if (err) throw err;
       var dbo = db.db("hw3");

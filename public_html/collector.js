@@ -50,6 +50,43 @@ img_enable = im.complete; //&& im.naturalHeight !== 0;
 console.log(img_enable);
 //});
 
+///////activity variables///////
+/* "use strict";
+
+document.onmousemove = handleMouseMove;
+var mousePos = [];
+
+function handleMouseMove(event) {
+    var dot, eventDoc, doc, body;
+
+    event = event || window.event; // IE-ism
+
+    // If pageX/Y aren't available and clientX/Y
+    // are, calculate pageX/Y - logic taken from jQuery
+    // Calculate pageX/Y if missing and clientX/Y available
+    if (event.pageX == null && event.clientX != null) {
+        eventDoc = (event.target && event.target.ownerDocument) || document;
+        doc = eventDoc.documentElement;
+        body = eventDoc.body;
+
+        event.pageX = event.clientX +
+            (doc && doc.scrollLeft || body && body.scrollLeft || 0) -
+            (doc && doc.clientLeft || body && body.clientLeft || 0);
+        event.pageY = event.clientY +
+            (doc && doc.scrollTop || body && body.scrollTop || 0) -
+            (doc && doc.clientTop || body && body.clientTop || 0);
+    }
+
+    var point = {
+
+        "x": event.pageX,
+        
+        "y": event.pageY
+        
+    };
+    mousePos.append(point);
+} */
+
 
 /////////jquery post & get///////////
 $(document).ready(function(){
@@ -93,4 +130,28 @@ $(document).ready(function(){
         });
         });
     });
+/*     while (1){
+        setTimeout($.post("https://felixwangsd.xyz/api/activity",
+        { "mousePos": mousePos, "language": userLang, "img_enable":img_enable,
+         "cookie": cookie_enable, "user_agent": user_agent, "user_screen_height":user_screen_height,
+        "user_screen_width":user_screen_width, "user_window_height":user_window_height,
+        "user_window_width":user_window_width,"user_conn_type":user_conn_type
+        },
+        function(){
+        })
+        .done(function(session,img_enable,user_conn_type) {
+        mousePos = [];
+        alert( "success" + "\nsessionid: " + session + "\nimg_enable: " + img_enable 
+        + "\nuser_conn_type: " + user_conn_type);
+        })
+        .fail(function(session,img_enable) {
+        alert( "error" + "\nsessionid: " + session+ "\nimg_enable: " + img_enable);
+        }), 10000);
+    } */
 });
+
+
+
+
+
+
