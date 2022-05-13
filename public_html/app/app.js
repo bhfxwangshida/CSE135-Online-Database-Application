@@ -31,14 +31,14 @@ app.get('/static/:cookieid', (req, res) => {
   mongoClient.connect(url, (err, db) => {
     if (err) throw err;
     var dbo = db.db("hw3");
-    dbo.collection("customers").findOne({
-      cookieID: cookieid
-    },
-    function(err, result) {
-      if (err) throw err;
-      res.json(result);
-      db.close();
-    });
+    dbo.collection("customers").findOne(
+      {cookieID: cookieid},
+      function(err, result) {
+        if (err) throw err;
+        res.json(result);
+        db.close();
+      }
+    );
   });
 })
 
