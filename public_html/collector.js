@@ -133,12 +133,12 @@ $(document).ready(function(){
     
 });
     
-setInterval($.post("https://felixwangsd.xyz/api/activity",
+setInterval(function() {$.post("https://felixwangsd.xyz/api/activity",
 { "cookieID": cookieID, "mousePos": JSON.stringify(mousePos)})
 .done(function(session) {
 mousePos = [];
 alert( "success" + "\nsessionid: " + session);
-}), 10000);
+})}, 10000);
 
 
 
