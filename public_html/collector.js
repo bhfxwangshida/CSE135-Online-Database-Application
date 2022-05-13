@@ -1,13 +1,34 @@
+///////get cookie///////
+let cookie = decodeURIComponent(document.cookie);
+if (cookie == ""){
+    var cookieID = setcookie();
+} else {
+    let cookie_array = cookie.split(';');
+    let idname = cookie_array[0].split('=');
+    var cookieID = idname[1];
+    alert("cookieID:"+cookieID);
+}
+///////set cookie///////
+function setcookie(){
+    const id = Date.now().toString(32) + Math.random().toString(32);
+    const d = new Date();
+    var expiredays = 2;
+    d.setTime(d.getTime() + expiredays*24*60*60*1000);
+    let cookie_toset = "cookieID=" + id + ";expires=" + d.toUTCString();
+    document.cookie = cookie_toset;
+    alert("setting cookie:"+cookie_toset);
+    return id;
+}
 ///////performance variables///////
-//var timing_obj = window.performance.timing;
-var start_time = perfEntries[0].domContentLoadedEventStart;
-var end_time = perfEntries[0].domContentLoadedEventEnd;
-//var load_time = end_time-start_time;
-var perfEntries = performance.getEntriesByType("navigation");
-var load_time = perfEntries[0].domContentLoadedEventEnd - perfEntries[0].domContentLoadedEventStart
-console.log(load_time)
-console.log(start_time)
-console.log(end_time)
+var perfEntries = window.performance.getEntriesByType("navigation");
+var timing_obj = perfEntries[0];
+var start_time = timing_obj.domContentLoadedEventStart;
+var end_time = timing_obj.loadEventEnd;
+var load_time = end_time-start_time;
+console.log(load_time);
+console.log(start_time);
+console.log(end_time);
+console.log(timing_obj);
 ///////static variables///////
 var user_agent = navigator.userAgent;
 var userLang = navigator.language || navigator.userLanguage;
@@ -22,57 +43,54 @@ var user_window_width = $(window).width();
 var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
 var user_conn_type = conn.effectiveType;
 //check user image enable
-window.addEventListener("load", event => {
-var image = document.querySelector('img');
-img_enable = image.complete && image.naturalHeight !== 0;
-alert(img_enable);
-});
-
+//window.addEventListener("load", event => {
+var im = document.getElementById("pepper");
+//var image = document.querySelector('assets/img/favicon.jpeg');
+img_enable = im.complete; //&& im.naturalHeight !== 0;
+console.log(img_enable);
+//});
 
 
 /////////jquery post & get///////////
 $(document).ready(function(){
-//var session = $('#session').val();
-var session = "<%= Session[\"UserName\"]%>"
-var timing_obj = 1;
     $("#myButton_post").click(function(){
         //performance
         $.post("https://felixwangsd.xyz/api/performance",
-        { "session_id": session, "timing_obj": timing_obj, "start_time":start_time,
+        { "cookieID": cookieID, "timing_obj": JSON.stringify(timing_obj), "start_time":start_time,
          "end_time": end_time, "load_time": load_time
         },
         function(){
             alert("post performance");
         })
-        .done(function(session,load_time) {
-        alert( "success" + "\nsessionid: " + session + "\nload_time: " + load_time);
+        .done(function(cookieID,load_time) {
+        alert( "success" + "\ncookieID: " + cookieID + "\nload_time: " + load_time);
         })
-        .fail(function(session,load_time) {
-        alert( "error" + "\nsessionid: " + session + "\nload_time: " + load_time);
+        .fail(function(cookieID,load_time) {
+        alert( "error" + "\ncookieID: " + cookieID + "\nload_time: " + load_time);
         });
         //static
         $.post("https://felixwangsd.xyz/api/static",
-        { "session_id": session, "language": userLang, "img_enable":img_enable,
-         "cookie": cookie_enable, "user_agent": user_agent, "user_screen_height":user_screen_height,
+        { "cookieID": cookieID, "language": userLang, "img_enable":img_enable,
+         "cookie_enable": cookie_enable, "user_agent": user_agent, "user_screen_height":user_screen_height,
         "user_screen_width":user_screen_width, "user_window_height":user_window_height,
         "user_window_width":user_window_width,"user_conn_type":user_conn_type
         },
         function(){
         })
-        .done(function(session,img_enable,user_conn_type) {
-        alert( "success" + "\nsessionid: " + session + "\nimg_enable: " + img_enable 
+        .done(function(cookieID,img_enable,user_conn_type) {
+        alert( "success" + "\ncookieID: " + cookieID + "\nimg_enable: " + img_enable 
         + "\nuser_conn_type: " + user_conn_type);
         })
-        .fail(function(session,img_enable) {
-        alert( "error" + "\nsessionid: " + session+ "\nimg_enable: " + img_enable);
+        .fail(function(cookieID,img_enable) {
+        alert( "error" + "\ncookieID: " + cookieID+ "\nimg_enable: " + img_enable);
         });
-    });
-    /*$("#myButton_get").click(function(){
-        $.get("https://felixwangsd.xyz/api/get/language?session=", function(data, status){
+        $("#myButton_get").click(function(){
+        $.get("https://felixwangsd.xyz/api/static/"+get_cookie, function(data, status){
         alert("Data: " + data + "\nStatus: " + status);
         })
         .fail(function(data, status) {
         alert( "error" + "\nData: " + data + "\nStatus: " + status);
         });
-    });*/
+        });
+    });
 });
