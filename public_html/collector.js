@@ -1,7 +1,7 @@
 ///////get cookie///////
 let cookie = decodeURIComponent(document.cookie);
 if (cookie == ""){
-    setcookie();
+    var cookieID = setcookie();
 } else {
     let cookie_array = cookie.split(';');
     let idname = cookie_array[0].split('=');
@@ -17,6 +17,7 @@ function setcookie(){
     let cookie_toset = "cookieID=" + id + ";expires=" + d.toUTCString();
     document.cookie = cookie_toset;
     alert("setting cookie:"+cookie_toset);
+    return id;
 }
 ///////performance variables///////
 var perfEntries = window.performance.getEntriesByType("navigation");
