@@ -82,7 +82,6 @@ function handleMouseMove(event) {
         "y": event.pageY
     };
     mousePos.push(point);
-    alert(JSON.stringify(mousePos));
 } 
 
 
@@ -130,15 +129,16 @@ $(document).ready(function(){
         });
     });
 
-    
-    setInterval($.post("https://felixwangsd.xyz/api/activity",
-    { "cookieID": cookieID, "mousePos": JSON.stringify(mousePos)})
-    .done(function(session) {
-    mousePos = [];
-    alert( "success" + "\nsessionid: " + session);
-    }), 10000);
+
     
 });
+    
+setInterval($.post("https://felixwangsd.xyz/api/activity",
+{ "cookieID": cookieID, "mousePos": JSON.stringify(mousePos)})
+.done(function(session) {
+mousePos = [];
+alert( "success" + "\nsessionid: " + session);
+}), 10000);
 
 
 
