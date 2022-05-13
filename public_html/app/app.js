@@ -8,22 +8,37 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 var mongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
 
-app.get('/get/language', (req, res) => {
+/*app.get('/static', (req, res) => {
   mongoClient.connect(url, (err, db) => {
+    if (err) throw err;
+    var dbo = db.db("hw3");
+    var whereStr = {"cookieID":req.query.cookieID};
+    console.log(req.query.cookieID);
+    dbo.collection("static").find(whereStr).toArray(function(err, result) {
       if (err) throw err;
-      var dbo = db.db("hw3");
-      var whereStr = {"cookieID":req.query.cookieID};
-      console.log(req.query.cookieID);
-      dbo.collection("static").find(whereStr).toArray(function(err, result) {
-        if (err) throw err;
-        console.log(result);
-        var response = {
-          "cookieID":req.query.cookieID,
-          "language":result[0].language
+      console.log(result);
+      var response = {
+        "cookieID":req.query.cookieID,
+        "language":result[0].language
       };
-        db.close();
-        res.end(JSON.stringify(response));
-      });
+      db.close();
+      res.end(JSON.stringify(response));
+    });
+  });
+})*/
+
+app.get('/static', (req, res) => {
+  mongoClient.connect(url, (err, db) => {
+    if (err) throw err;
+    var dbo = db.db("hw3");
+    var whereStr = {"cookieID":req.query.cookieID};
+    console.log(req.query.cookieID);
+    dbo.collection("static").find(whereStr).toArray(function(err, result) {
+      if (err) throw err;
+      console.log(result);
+      db.close();
+      res.end(JSON.stringify(result));
+    });
   });
 })
 
