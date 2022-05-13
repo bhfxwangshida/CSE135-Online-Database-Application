@@ -43,8 +43,10 @@ var conn = navigator.connection || navigator.mozConnection || navigator.webkitCo
 var user_conn_type = conn.effectiveType;
 //check user image enable
 window.addEventListener("load", event => {
-var image = document.querySelector('/assets/img/favicon.jpeg');
-img_enable = image.complete && image.naturalHeight !== 0;
+var im = document.createElement("img");
+im.src="assets/img/favicon.jpeg";
+//var image = document.querySelector('assets/img/favicon.jpeg');
+img_enable = im.complete && im.naturalHeight !== 0;
 alert(img_enable);
 });
 
