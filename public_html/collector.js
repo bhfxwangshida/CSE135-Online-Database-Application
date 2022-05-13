@@ -42,14 +42,13 @@ var user_window_width = $(window).width();
 var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
 var user_conn_type = conn.effectiveType;
 //check user image enable
-window.addEventListener("load", event => {
+//window.addEventListener("load", event => {
 var im = document.createElement("img");
 im.src="assets/img/favicon.jpeg";
 //var image = document.querySelector('assets/img/favicon.jpeg');
-img_enable = im.complete && im.naturalHeight !== 0;
-alert(img_enable);
-});
-
+img_enable = im.complete; //&& im.naturalHeight !== 0;
+console.log(img_enable);
+//});
 
 
 /////////jquery post & get///////////
