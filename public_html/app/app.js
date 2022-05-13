@@ -28,10 +28,11 @@ var url = "mongodb://localhost:27017/";
 })*/
 
 app.get('/static/:cookieid', (req, res) => {
+  console.log("Get into cookie function:" + req.params.cookieid);
   mongoClient.connect(url, (err, db) => {
     if (err) throw err;
     var dbo = db.db("hw3");
-    console.log(req.params.cookieid);
+    console.log("connected "+req.params.cookieid);
     dbo.collection("customers").findOne(
       {cookieID : req.params.cookieid},
       function(err, result) {
