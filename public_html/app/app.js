@@ -27,17 +27,17 @@ var url = "mongodb://localhost:27017/";
   });
 })*/
 
-app.get('/static', (req, res) => {
+app.get('/static/:cookieID', (req, res) => {
   mongoClient.connect(url, (err, db) => {
     if (err) throw err;
     var dbo = db.db("hw3");
-    var whereStr = {"cookieID":req.query.cookieID};
-    console.log(req.query.cookieID);
-    dbo.collection("static").find(whereStr).toArray(function(err, result) {
+    dbo.collection("customers").findOne({
+      cookieID: req.params.cookieID
+    },
+    function(err, result) {
       if (err) throw err;
-      console.log(result);
+      res.json(result);
       db.close();
-      res.end(JSON.stringify(result));
     });
   });
 })
