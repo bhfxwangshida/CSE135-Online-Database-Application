@@ -55,7 +55,7 @@ $(document).ready(function(){
     $("#myButton_post").click(function(){
         //performance
         $.post("https://felixwangsd.xyz/api/performance",
-        { "cookieID": cookieID, "timing_obj": timing_obj, "start_time":start_time,
+        { "cookieID": cookieID, "timing_obj": perfEntries, "start_time":start_time,
          "end_time": end_time, "load_time": load_time
         },
         function(){
