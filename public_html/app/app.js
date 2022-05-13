@@ -84,6 +84,24 @@ app.post('/performance', urlencodedParser, function (req, res) {
   });
 })
 
+app.post('/activity', urlencodedParser, function (req, res) {
+  console.log(req.cookieID);
+  mongoClient.connect(url, function(err, db) {
+      if (err) throw err;
+      var dbo = db.db("hw3");
+      var acto = { cookieID: req.body.cookieID, mousePos: req.body.mousePos};
+      dbo.collection("activity").insertOne(acto, function(err, result) {
+          if (err) throw err;
+          var response = {
+            "cookieID":req.body.cookieID,
+            "result":result
+          };
+          db.close();
+          res.end(JSON.stringify(response));
+      });
+  });
+})
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
