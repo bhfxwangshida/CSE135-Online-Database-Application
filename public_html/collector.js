@@ -122,7 +122,7 @@ $(document).ready(function(){
         alert( "error" + "\ncookieID: " + cookieID+ "\nimg_enable: " + img_enable);
         });
         $("#myButton_get").click(function(){
-        $.get("https://felixwangsd.xyz/api/static/"+get_cookie, function(data, status){
+        $.get("https://felixwangsd.xyz/api/static/?"+get_cookie, function(data, status){
         alert("Data: " + data + "\nStatus: " + status);
         })
         .fail(function(data, status) {

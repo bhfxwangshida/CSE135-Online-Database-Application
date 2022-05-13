@@ -28,6 +28,7 @@ var url = "mongodb://localhost:27017/";
 })*/
 
 app.get('/static/:cookieid', (req, res) => {
+  console.log(req.params.cookieid);
   mongoClient.connect(url, (err, db) => {
     if (err) throw err;
     var dbo = db.db("hw3");
