@@ -1,13 +1,29 @@
 ///////performance variables///////
 //var timing_obj = window.performance.timing;
-var start_time = perfEntries[0].domContentLoadedEventStart;
-var end_time = perfEntries[0].domContentLoadedEventEnd;
-//var load_time = end_time-start_time;
-var perfEntries = performance.getEntriesByType("navigation");
-var load_time = perfEntries[0].domContentLoadedEventEnd - perfEntries[0].domContentLoadedEventStart
-console.log(load_time)
-console.log(start_time)
-console.log(end_time)
+const perfEntries = performance.getEntriesByType("navigation");
+const [p_c] = perfEntries;
+console.log(p_c.toJSON());
+console.log("document load = " + p_c.loadEventStart);
+
+  for (var i=0; i < perfEntries.length; i++) {
+    console.log("= Navigation entry[" + i + "]");
+    var p = perfEntries[i];
+    // dom Properties
+    console.log("DOM content loaded = " + (p.domContentLoadedEventEnd - p.domContentLoadedEventStart));
+    console.log("DOM complete = " + p.domComplete);
+    console.log("DOM interactive = " + p.interactive);
+
+    // document load and unload time
+    console.log("document load = " + p.loadEventStart);
+
+    console.log("document load = " + (p.loadEventEnd - p.loadEventStart));
+    console.log("document unload = " + (p.unloadEventEnd - p.unloadEventStart));
+
+    // other properties
+    console.log("type = " + p.type);
+    console.log("redirectCount = " + p.redirectCount);
+}
+
 ///////static variables///////
 var user_agent = navigator.userAgent;
 var userLang = navigator.language || navigator.userLanguage;
@@ -76,3 +92,4 @@ var timing_obj = 1;
         });
     });*/
 });
+
