@@ -28,11 +28,9 @@ var url = "mongodb://localhost:27017/";
 })*/
 
 app.get('/static/:cookieid', (req, res) => {
-  console.log("Get into cookie function:" + req.params.cookieid);
   mongoClient.connect(url, (err, db) => {
     if (err) throw err;
     var dbo = db.db("hw3");
-    console.log("connect to collection: static, with cookie "+req.params.cookieid);
     dbo.collection("static").findOne(
       {cookieID : req.params.cookieid},
       function(err, result) {
@@ -45,8 +43,7 @@ app.get('/static/:cookieid', (req, res) => {
 })
 
 app.post('/static', urlencodedParser, function (req, res) {
-  console.log("222");
-  console.log(req.cookieID);
+
   mongoClient.connect(url, function(err, db) {
       if (err) throw err;
       var dbo = db.db("hw3");
