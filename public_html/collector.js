@@ -57,19 +57,19 @@ document.onmousemove = handleMouseMove;
 document.onclick = handleMouseClick;
 document.onscroll = handleMouseScroll;
 var mousePos = [];
-var mouseClicks = [];
+var mouseClick = [];
 var mouseScroll = [];
 
 function handleMouseClick(event) {
     var event = event || window.event;
     if (event.button == 1) {
-        mouseClicks.push("Left");
+        mouseClick.push("Left");
     } else if (event.button == 2) {
-        mouseClicks.push("Right");
+        mouseClick.push("Right");
     } else if (event.button == 3) {
-        mouseClicks.push("Left & Right");
+        mouseClick.push("Left & Right");
     } else {
-        mouseClicks.push("Others");
+        mouseClick.push("Others");
     }
 }
 
@@ -179,7 +179,7 @@ $(document).ready(function(){
 });
     
 setInterval(function() {$.post("https://felixwangsd.xyz/api/activity",
-{ "cookieID": cookieID, "mousePos": JSON.stringify(mousePos), "mousePos": JSON.stringify(mouseScroll), "mousePos": JSON.stringify(mouseClick)})
+{ "cookieID": cookieID, "mousePos": JSON.stringify(mousePos), "mouseScroll": JSON.stringify(mouseScroll), "mouseClick": JSON.stringify(mouseClick)})
 .done(function(session) {
     mousePos = [];
     mouseScroll = [];
