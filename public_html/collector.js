@@ -78,26 +78,13 @@ function handleMouseScroll(event) {
     var eventDoc, doc, body;
 
     event = event || window.event; // IE-ism
-
-    // If pageX/Y aren't available and clientX/Y
-    // are, calculate pageX/Y - logic taken from jQuery
-    // Calculate pageX/Y if missing and clientX/Y available
-    if (event.pageX == null && event.clientX != null) {
-        eventDoc = (event.target && event.target.ownerDocument) || document;
-        doc = eventDoc.documentElement;
-        body = eventDoc.body;
-
-        event.pageX = event.clientX +
-            (doc && doc.scrollLeft || body && body.scrollLeft || 0) -
-            (doc && doc.clientLeft || body && body.clientLeft || 0);
-        event.pageY = event.clientY +
-            (doc && doc.scrollTop || body && body.scrollTop || 0) -
-            (doc && doc.clientTop || body && body.clientTop || 0);
-    }
+    var doc = document.documentElement;
+var left = (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0);
+var top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
 
     var point = {
-        "x": event.pageX,
-        "y": event.pageY
+        "scrollTop": top,
+        "scrollLeft": left
     };
     mouseScroll.push(point);
 }
@@ -184,13 +171,13 @@ setInterval(function() {$.post("https://felixwangsd.xyz/api/activity",
 .done(function(session) {
     mousePos = [];
     mouseScroll = [];
-    mouseclick = [];
+    mouseClick = [];
     alert( "success" + "\nsessionid: " + session);
 })
 .fail(function() {
     mousePos = [];
     mouseScroll = [];
-    mouseclick = [];
+    mouseClick = [];
 })
 }, 10000)
 
