@@ -54,10 +54,43 @@ console.log(img_enable);
 "use strict";
 
 document.onmousemove = handleMouseMove;
+document.onmousedown = handleMouseClick;
+document.onscroll = handleMouseScroll;
 var mousePos = [];
+var mouseClick = [];
+var mouseScroll = [];
+
+function handleMouseClick(event) {
+    var event = event || window.event;
+    alert(event.button);
+    if (event.button == 0) {
+        mouseClick.push("Left");
+    } else if (event.button == 2) {
+        mouseClick.push("Right");
+    } else if (event.button == 1) {
+        mouseClick.push("Middle");
+    } else {
+        mouseClick.push("Others");
+    }
+}
+
+function handleMouseScroll(event) {
+    var eventDoc, doc, body;
+
+    event = event || window.event; // IE-ism
+    var doc = document.documentElement;
+var left = (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0);
+var top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+
+    var point = {
+        "scrollTop": top,
+        "scrollLeft": left
+    };
+    mouseScroll.push(point);
+}
 
 function handleMouseMove(event) {
-    var dot, eventDoc, doc, body;
+    var eventDoc, doc, body;
 
     event = event || window.event; // IE-ism
 
@@ -134,13 +167,17 @@ $(document).ready(function(){
 });
     
 setInterval(function() {$.post("https://felixwangsd.xyz/api/activity",
-{ "cookieID": cookieID, "mousePos": JSON.stringify(mousePos)})
+{ "cookieID": cookieID, "mousePos": JSON.stringify(mousePos), "mouseScroll": JSON.stringify(mouseScroll), "mouseClick": JSON.stringify(mouseClick)})
 .done(function(session) {
     mousePos = [];
+    mouseScroll = [];
+    mouseClick = [];
     alert( "success" + "\nsessionid: " + session);
 })
-.fail(function(data, status) {
+.fail(function() {
     mousePos = [];
+    mouseScroll = [];
+    mouseClick = [];
 })
 }, 10000)
 
