@@ -54,10 +54,55 @@ console.log(img_enable);
 "use strict";
 
 document.onmousemove = handleMouseMove;
+document.onclick = handleMouseClick;
+document.onscroll = handleMouseScroll;
 var mousePos = [];
+var mouseClicks = [];
+var mouseScroll = [];
+
+function handleMouseClick(event) {
+    var event = event || window.event;
+    if (event.button == 1) {
+        mouseClicks.push("Left");
+    } else if (event.button == 2) {
+        mouseClicks.push("Right");
+    } else if (event.button == 3) {
+        mouseClicks.push("Left & Right");
+    } else {
+        mouseClicks.push("Others");
+    }
+}
+
+function handleMouseScroll(event) {
+    var dot, eventDoc, doc, body;
+
+    event = event || window.event; // IE-ism
+
+    // If pageX/Y aren't available and clientX/Y
+    // are, calculate pageX/Y - logic taken from jQuery
+    // Calculate pageX/Y if missing and clientX/Y available
+    if (event.pageX == null && event.clientX != null) {
+        eventDoc = (event.target && event.target.ownerDocument) || document;
+        doc = eventDoc.documentElement;
+        body = eventDoc.body;
+
+        event.pageX = event.clientX +
+            (doc && doc.scrollLeft || body && body.scrollLeft || 0) -
+            (doc && doc.clientLeft || body && body.clientLeft || 0);
+        event.pageY = event.clientY +
+            (doc && doc.scrollTop || body && body.scrollTop || 0) -
+            (doc && doc.clientTop || body && body.clientTop || 0);
+    }
+
+    var point = {
+        "x": event.pageX,
+        "y": event.pageY
+    };
+    mouseScroll.push(point);
+}
 
 function handleMouseMove(event) {
-    var dot, eventDoc, doc, body;
+    var eventDoc, doc, body;
 
     event = event || window.event; // IE-ism
 
@@ -134,13 +179,17 @@ $(document).ready(function(){
 });
     
 setInterval(function() {$.post("https://felixwangsd.xyz/api/activity",
-{ "cookieID": cookieID, "mousePos": JSON.stringify(mousePos)})
+{ "cookieID": cookieID, "mousePos": JSON.stringify(mousePos), "mousePos": JSON.stringify(mouseScroll), "mousePos": JSON.stringify(mouseClick)})
 .done(function(session) {
     mousePos = [];
+    mouseScroll = [];
+    mouseclick = [];
     alert( "success" + "\nsessionid: " + session);
 })
-.fail(function(data, status) {
+.fail(function() {
     mousePos = [];
+    mouseScroll = [];
+    mouseclick = [];
 })
 }, 10000)
 
