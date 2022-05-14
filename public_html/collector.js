@@ -54,7 +54,7 @@ console.log(img_enable);
 "use strict";
 
 document.onmousemove = handleMouseMove;
-document.onclick = handleMouseClick;
+document.onmousedown = handleMouseClick;
 document.onscroll = handleMouseScroll;
 var mousePos = [];
 var mouseClick = [];
@@ -62,19 +62,20 @@ var mouseScroll = [];
 
 function handleMouseClick(event) {
     var event = event || window.event;
-    if (event.button == 1) {
+    alert(event.button);
+    if (event.button == 0) {
         mouseClick.push("Left");
     } else if (event.button == 2) {
         mouseClick.push("Right");
-    } else if (event.button == 3) {
-        mouseClick.push("Left & Right");
+    } else if (event.button == 1) {
+        mouseClick.push("Middle");
     } else {
         mouseClick.push("Others");
     }
 }
 
 function handleMouseScroll(event) {
-    var dot, eventDoc, doc, body;
+    var eventDoc, doc, body;
 
     event = event || window.event; // IE-ism
 
