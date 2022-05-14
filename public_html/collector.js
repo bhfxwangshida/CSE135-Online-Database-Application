@@ -62,20 +62,36 @@ var mouseScroll = [];
 
 function handleMouseClick(event) {
     var event = event || window.event;
+
     alert(event.button);
     if (event.button == 0) {
-        mouseClick.push("Left");
+        var click = {
+            "timestamp": event.timeStamp,
+            "button": "Left"
+        };
+        mouseClick.push(click);
     } else if (event.button == 2) {
-        mouseClick.push("Right");
+        var click = {
+            "timestamp": event.timeStamp,
+            "button": "Right"
+        };
+        mouseClick.push(click);
     } else if (event.button == 1) {
-        mouseClick.push("Middle");
+        var click = {
+            "timestamp": event.timeStamp,
+            "button": "Middle"
+        };
+        mouseClick.push(click);
     } else {
-        mouseClick.push("Others");
+        var click = {
+            "timestamp": event.timeStamp,
+            "button": "Others"
+        };
+        mouseClick.push(click);
     }
 }
 
 function handleMouseScroll(event) {
-    var eventDoc, doc, body;
 
     event = event || window.event; // IE-ism
     var doc = document.documentElement;
@@ -84,7 +100,8 @@ var top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
 
     var point = {
         "scrollTop": top,
-        "scrollLeft": left
+        "scrollLeft": left,
+        "timestamp": event.timeStamp
     };
     mouseScroll.push(point);
 }
@@ -112,7 +129,8 @@ function handleMouseMove(event) {
 
     var point = {
         "x": event.pageX,
-        "y": event.pageY
+        "y": event.pageY,
+        "timestamp": event.timeStamp
     };
     mousePos.push(point);
 } 
