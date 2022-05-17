@@ -95,7 +95,6 @@ function handleKeyUp(event) {
 function handleMouseClick(event) {
     var event = event || window.event;
 
-    alert(event.button);
     if (event.button == 0) {
         var click = {
             "timestamp": event.timeStamp,
@@ -233,7 +232,6 @@ setInterval(function() {$.post("https://felixwangsd.xyz/api/activity",
     mousePos = [];
     mouseScroll = [];
     mouseClick = [];
-    alert( "success" + "\nsessionid: " + session);
 })
 .fail(function() {
     mousePos = [];
