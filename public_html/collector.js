@@ -51,7 +51,13 @@ console.log(img_enable);
 //});
 
 ///////activity variables///////
-"use strict";
+var idleTime = 0;
+var idles = [];
+
+setInterval(function(){
+    idleTime += 500;
+}, 500);
+
 
 document.onmousemove = handleMouseMove;
 document.onmousedown = handleMouseClick;
@@ -70,7 +76,15 @@ var keyUp = [];
 function handleUnload() {
     pageUnload = new Date().getTime();
 }
+function recordIdle(){
+    if (idleTime > 2000) {
+        idles.push({"idleEndAt": new Date().getTime(), "Idlelasts": idleTime});
+    }
+    idleTime = 0;
+}
 function handleKeyDown(event) {
+    recordIdle();
+
     keyDown.push({
         key: event.key,
         keyCode: event.keyCode,
@@ -82,6 +96,7 @@ function handleKeyDown(event) {
 }
 
 function handleKeyUp(event) {
+    recordIdle();
     keyUp.push({
         key: event.key,
         keyCode: event.keyCode,
@@ -93,6 +108,7 @@ function handleKeyUp(event) {
 }
 
 function handleMouseClick(event) {
+    recordIdle();
     var event = event || window.event;
 
     if (event.button == 0) {
@@ -123,6 +139,7 @@ function handleMouseClick(event) {
 }
 
 function handleMouseScroll(event) {
+    recordIdle();
 
     event = event || window.event; // IE-ism
     var doc = document.documentElement;
@@ -138,6 +155,7 @@ var top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
 }
 
 function handleMouseMove(event) {
+    recordIdle();
     var eventDoc, doc, body;
 
     event = event || window.event; // IE-ism
@@ -214,7 +232,7 @@ $(document).ready(function(){
 
     
 });
-    
+
 setInterval(function() {$.post("https://felixwangsd.xyz/api/activity",
 { 
     "cookieID": cookieID,
@@ -225,20 +243,26 @@ setInterval(function() {$.post("https://felixwangsd.xyz/api/activity",
     "keyUp": JSON.stringify(keyUp),
     "pageLoadTime": pageLoad,
     "pageUnloadTime": pageUnload,
-    "curPage": pageName
+    "curPage": pageName,
+    "idle":JSON.stringify(idles)
+
 
 })
-.done(function(session) {
+.done(function() {
     mousePos = [];
     mouseScroll = [];
     mouseClick = [];
+    keyDown = [];
+    keyUp = [];
+    idles = [];
 })
 .fail(function() {
     mousePos = [];
     mouseScroll = [];
     mouseClick = [];
     keyDown = [];
-    keyUp = [];
+    keyUp = []; 
+    idles = [];
 })
 }, 10000)
 
