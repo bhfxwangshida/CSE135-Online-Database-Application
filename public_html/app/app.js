@@ -89,7 +89,17 @@ app.post('/activity', urlencodedParser, function (req, res) {
   mongoClient.connect(url, function(err, db) {
       if (err) throw err;
       var dbo = db.db("hw3");
-      var acto = { cookieID: req.body.cookieID, mousePos: req.body.mousePos};
+      var acto = {
+        cookieID: req.body.cookieID,
+        mousePos: req.body.mousePos,
+        mouseScroll: req.body.mouseScroll,
+        mouseClick: req.body.mouseClick,
+        keyDown: req.body.keyDown,
+        keyUp: req.body.keyUp,
+        pageLoadTime: req.body.pageLoad,
+        pageUnloadTime: req.body.pageUnload,
+        curPage: req.body.pageName
+      };
       dbo.collection("activity").insertOne(acto, function(err, result) {
           if (err) throw err;
           var response = {

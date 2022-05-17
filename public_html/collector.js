@@ -58,11 +58,18 @@ document.onmousedown = handleMouseClick;
 document.onscroll = handleMouseScroll;
 document.onkeydown = handleKeyDown;
 document.onkeyup = handleKeyUp;
+window.onbeforeunload = handleUnload;
+var pageLoad = new Date().getTime();
+var pageName = window.location.pathname;
+var pageUnload;
 var mousePos = [];
 var mouseClick = [];
 var mouseScroll = [];
 var keyDown = [];
 var keyUp = [];
+function handleUnload() {
+    pageUnload = new Date().getTime();
+}
 function handleKeyDown(event) {
     keyDown.push({
         key: event.key,
@@ -216,7 +223,10 @@ setInterval(function() {$.post("https://felixwangsd.xyz/api/activity",
     "mouseScroll": JSON.stringify(mouseScroll),
     "mouseClick": JSON.stringify(mouseClick),
     "keyDown": JSON.stringify(keyDown),
-    "keyUp": JSON.stringify(keyUp)
+    "keyUp": JSON.stringify(keyUp),
+    "pageLoadTime": pageLoad,
+    "pageUnloadTime": pageUnload,
+    "curPage": pageName
 
 })
 .done(function(session) {
