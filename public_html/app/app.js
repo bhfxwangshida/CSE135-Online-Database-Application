@@ -96,9 +96,11 @@ app.post('/activity', urlencodedParser, function (req, res) {
         mouseClick: req.body.mouseClick,
         keyDown: req.body.keyDown,
         keyUp: req.body.keyUp,
-        pageLoadTime: req.body.pageLoad,
-        pageUnloadTime: req.body.pageUnload,
-        curPage: req.body.pageName
+        pageLoadTime: req.body.pageLoadTime,
+        pageUnloadTime: req.body.pageUnloadTime,
+        curPage: req.body.curPage,
+        idle: req.body.idle
+
       };
       dbo.collection("activity").insertOne(acto, function(err, result) {
           if (err) throw err;
@@ -113,5 +115,5 @@ app.post('/activity', urlencodedParser, function (req, res) {
 })
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+    console.log(`App listening on port ${port}`)
 })
