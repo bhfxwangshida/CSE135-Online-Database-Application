@@ -9,7 +9,7 @@
   <!-- Chart Placement[2] -->
   <div id="bar_chart"></div>
   <div id="line_chart"></div>
-
+  <div id="myChart"></div>
   <script>
     /////////jquery post & get///////////
     var activity_data = [];
@@ -17,12 +17,10 @@
     var static_data = [];
     var static_count = -1;
     var screenhight = -1;
-    run();
-    alert(static_data);
-
+    /*run();
     async function run() {
       await $.get("https://felixwangsd.xyz/api/static", function(data, status){
-        static_data = data;
+      static_data = data;
       //alert("Data: " + static_data + "\nStatus: " + status);
       });
 
@@ -35,29 +33,15 @@
         activity_data = data;
       //alert("Data: " + activity_data + "\nStatus: " + status);
       });
-/*       var static_count = static_data.length;
-      var performance_count = performance_data.length;
-      var activity_count = activity_data.length; */
-      var static_count = 0;
-      for (o in static_data) {
-        if (o != undefined) {
-          static_count++;
-        }
-      }
-      var performance_count = 0;
-      for (o in performance_data) {
-        if (o != undefined) {
-          performance_count++;
-        }
-      }
-      var activity_count = 0;
-      for (o in activity_data) {
-        if (o != undefined) {
-          activity_count++;
-        }
-      }
-      
-      let myConfig = {
+      //var static_count = Object.keys(static_data).length;
+      //var performance_count = performance_data.length;
+      //var activity_count = activity_data.length;
+      //alert(screenhight);
+      //alert(static_count);
+      //alert(performance_count);
+      //alert(activity_count); 
+    }*/
+    let Config_bar = {
         type: 'bar',
         title: {
           text: 'Data Basics',
@@ -90,7 +74,8 @@
           {
             // Plot 1 values, linear data
             //values: [static_data,performance_data,activity_data],
-            values: [static_count,performance_count,activity_count]
+            //values: [static_count,performance_count,activity_count]
+            values: [3,4,5]
           }
         ]
       };
@@ -98,14 +83,14 @@
       // Render Method[3]
       zingchart.render({
         id: 'bar_chart',
-        data: myConfig,
+        data: Config_bar,
       });
 
       /////// line chart /////////////
 
       // CHART CONFIG
       // -----------------------------
-      let chartConfig = {
+      let chartConfig_line = {
         type: 'mixed',
         title: {
           text: 'Sample Burndown Chart',
@@ -211,14 +196,7 @@
               visible: false,
             },
             scales: 'scale-x, scale-y',
-          },
-          {
-            type: 'bar',
-            text: 'Completed Tasks',
-            values: [5, 10, 6, 3, 6, 2, 0, 9],
-            backgroundColor: '#ffa726',
-            scales: 'scale-x, scale-y-2',
-          },
+          }
         ],
       };
 
@@ -226,12 +204,41 @@
       // -----------------------------
       zingchart.render({
         id: 'line_chart',
-        data: chartConfig,
+        data: chartConfig_line,
         height: '560px',
         width: '100%',
       });
 
-    }
+      //////////////////////////pie chart///////////////////////
+      var Config_pie = {
+      "type": "pie",
+      "title": {
+        "text": "A Pie Chart"
+      },
+      "series": [{
+          "values": [59]
+        },
+        {
+          "values": [55]
+        },
+        {
+          "values": [30]
+        },
+        {
+          "values": [28]
+        },
+        {
+          "values": [15]
+        }
+      ]
+    };
+ 
+    zingchart.render({
+      id: 'pie_chart',
+      data: Config_pie,
+      height: 400,
+      width: "100%"
+    });
 /*     $(document).ready(function(){
       await $.get("https://felixwangsd.xyz/api/static", function(data, status){
       static_data = data;
