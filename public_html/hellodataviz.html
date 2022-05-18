@@ -11,12 +11,12 @@
 
   <script>
     /////////jquery post & get///////////
-    var activity_count;
-    var performance_count;
-    var static_count;
+    var activity_data;
+    var performance_data;
+    var static_data;
     $(document).ready(function(){
-      $.get("https://felixwangsd.xyz/api/static", function(static_data, status){
-      static_count = Object.keys(static_data).length;
+      $.get("https://felixwangsd.xyz/api/static", function(data, status){
+      static_data = data;
       alert("Data: " + static_data + "\nStatus: " + status);
       })
       .fail(function(static_data, status) {
@@ -24,8 +24,8 @@
       });
     });
     $(document).ready(function(){
-      $.get("https://felixwangsd.xyz/api/performance", function(performance_data, status){
-        performance_count = Object.keys(performance_data).length;
+      $.get("https://felixwangsd.xyz/api/performance", function(data, status){
+        performance_data = data;
         alert("Data: " + performance_data + "\nStatus: " + status);
       })
       .fail(function(performance_data, status) {
@@ -33,14 +33,18 @@
       });
     });
     $(document).ready(function(){
-      $.get("https://felixwangsd.xyz/api/static", function(activity_data, status){
-        activity_count = Object.keys(activity_data).length;
+      $.get("https://felixwangsd.xyz/api/static", function(data, status){
+        activity_data = data;
       alert("Data: " + activity_data + "\nStatus: " + status);
       })
       .fail(function(activity_data, status) {
       alert( "error" + "\nData: " + activity_data + "\nStatus: " + status);
       });
     });
+
+    //var static_count = Object.keys(static_data).length;
+    //var performance_count = Object.keys(performance_data).length;
+    //var activity_count = Object.keys(activity_data).length;
 
     let myConfig = {
       type: 'bar',
@@ -74,7 +78,7 @@
       series: [
         {
           // Plot 1 values, linear data
-          //values: [static_count,performance_count,activity_count],
+          //values: [static_data,performance_data,activity_data],
           values: [35,42,33],
           text: 'Week 1',
         },
