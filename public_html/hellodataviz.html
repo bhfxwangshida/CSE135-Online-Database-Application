@@ -18,8 +18,7 @@
     var static_count = -1;
     var screenhight = -1;
     run();
-
-    async function run() {
+    async function getData() {
       await $.get("https://felixwangsd.xyz/api/static", function(data, status){
         static_data = data;
       //alert("Data: " + static_data + "\nStatus: " + status);
@@ -34,19 +33,13 @@
         activity_data = data;
       //alert("Data: " + activity_data + "\nStatus: " + status);
       });
-      var static_count = 0;
-        
-      var performance_count = 0;
-      var activity_count = 0;
-      for (o of static_data) {
-        static_count++;
-      }
-      for (o of static_data) {
-        performance_count++;
-      }
-      for (o of static_data) {
-        activity_count++;
-      }
+    }
+
+    function run() {
+      getData();
+      var static_count = static_data.length;
+      var performance_count = performance_data.length;
+      var activity_count = activity_data.length;
       alert(activity_data);
       alert(static_data);
       alert(static_count);
