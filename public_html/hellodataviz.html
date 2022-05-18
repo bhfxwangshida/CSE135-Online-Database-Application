@@ -33,10 +33,24 @@
         activity_data = data;
       //alert("Data: " + activity_data + "\nStatus: " + status);
       });
-
-      var static_count = static_data.length;
-      var performance_count = performance_data.length;
-      var activity_count = activity_data.length;
+      var static_count = 0;
+      for (o of static_data) {
+        if (o != undefined) {
+          static_count++;
+        }
+      }
+      var performance_count = 0;
+      for (o of performance_data) {
+        if (o != undefined) {
+          performance_count++;
+        }
+      }
+      var activity_count = 0;
+      for (o of activity_data) {
+        if (o != undefined) {
+          activity_count++;
+        }
+      }
       
       let myConfig = {
         type: 'bar',
