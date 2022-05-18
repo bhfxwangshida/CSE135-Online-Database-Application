@@ -6,9 +6,38 @@
 </head>
 <body>
   <!-- Chart Placement[2] -->
-  <div id="myChart"></div>
+  <div id="bar_chart"></div>
 
   <script>
+    /////////jquery post & get///////////
+    $(document).ready(function(){
+      $.get("https://felixwangsd.xyz/api/static", function(static_data, status){
+      alert("Data: " + static_data + "\nStatus: " + status);
+      })
+      .fail(function(static_data, status) {
+      alert( "error" + "\nData: " + static_data + "\nStatus: " + status);
+      });
+    });
+    $(document).ready(function(){
+      $.get("https://felixwangsd.xyz/api/performance", function(performance_data, status){
+      alert("Data: " + performance_data + "\nStatus: " + status);
+      })
+      .fail(function(performance_data, status) {
+      alert( "error" + "\nData: " + performance_data + "\nStatus: " + status);
+      });
+    });
+    $(document).ready(function(){
+      $.get("https://felixwangsd.xyz/api/static", function(activity_data, status){
+      alert("Data: " + activity_data + "\nStatus: " + status);
+      })
+      .fail(function(activity_data, status) {
+      alert( "error" + "\nData: " + activity_data + "\nStatus: " + status);
+      });
+    });
+    var activity_count = Object.keys(activity_data).length;
+    var performance_count = Object.keys(performance_data).length;
+    var static_count = Object.keys(static_data).length;
+
     let myConfig = {
       type: 'bar',
       title: {
@@ -20,13 +49,13 @@
       },
       scaleX: {
         // Set scale label
-        label: { text: 'Days' },
+        label: { text: 'data volume' },
         // Convert text on scale indices
-        labels: [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun' ]
+        labels: [ 'static', 'performance', 'activity' ]
       },
       scaleY: {
         // Scale label with unicode character
-        label: { text: 'Temperature (°F)' }
+        label: { text: 'sizes' }
       },
       plot: {
         // Animation docs here:
@@ -41,17 +70,17 @@
       series: [
         {
           // Plot 1 values, linear data
-          values: [23,20,27,29,25,17,15],
+          values: [static_count,performance_count,activity_count],
           text: 'Week 1',
         },
         {
           // Plot 2 values, linear data
-          values: [35,42,33,49,35,47,35],
+          values: [35,42,33],
           text: 'Week 2'
         },
         {
           // Plot 2 values, linear data
-          values: [15,22,13,33,44,27,31],
+          values: [15,22,13],
           text: 'Week 3'
         }
       ]
@@ -59,7 +88,7 @@
 
     // Render Method[3]
     zingchart.render({
-      id: 'myChart',
+      id: 'bar_chart',
       data: myConfig,
     });
   </script>
