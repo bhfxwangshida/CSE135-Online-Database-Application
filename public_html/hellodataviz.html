@@ -17,31 +17,21 @@
     var static_count = -1;
     var screenhight = -1;
     $(document).ready(function(){
-      $.get("https://felixwangsd.xyz/api/static", function(data, status){
+      await $.get("https://felixwangsd.xyz/api/static", function(data, status){
       static_data = data;
-      screenhight = data[0].user_screen_height;
-      for (var i = 1, l = Object.keys(data).length; i <= l; i++) {
-        static_count = i;
-      }
       //alert("Data: " + static_data + "\nStatus: " + status);
-      })
-      .fail(function(static_data, status) {
-      //alert( "error" + "\nData: " + static_data + "\nStatus: " + status);
-      });
-      $.get("https://felixwangsd.xyz/api/performance", function(data, status){
+      }).promise();
+
+      await $.get("https://felixwangsd.xyz/api/performance", function(data, status){
         performance_data = data;
         //alert("Data: " + performance_data + "\nStatus: " + status);
       })
-      .fail(function(performance_data, status) {
-      //alert( "error" + "\nData: " + performance_data + "\nStatus: " + status);
-      }); 
-      $.get("https://felixwangsd.xyz/api/static", function(data, status){
+      .promise(); 
+
+      await $.get("https://felixwangsd.xyz/api/static", function(data, status){
         activity_data = data;
       //alert("Data: " + activity_data + "\nStatus: " + status);
-      })
-      .fail(function(activity_data, status) {
-      //alert( "error" + "\nData: " + activity_data + "\nStatus: " + status);
-      });
+      }).promise();
 
                 
       //var static_count = Object.keys(static_data).length;
