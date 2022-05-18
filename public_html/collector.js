@@ -65,6 +65,7 @@ document.onscroll = handleMouseScroll;
 document.onkeydown = handleKeyDown;
 document.onkeyup = handleKeyUp;
 window.onbeforeunload = handleUnload;
+window.onload = handleLoad;
 var pageLoad = new Date().getTime();
 var pageName = window.location.pathname;
 var pageUnload;
@@ -184,10 +185,8 @@ function handleMouseMove(event) {
     mousePos.push(point);
 } 
 
+function handleLoad() {
 
-/////////jquery post & get///////////
-$(document).ready(function(){
-    $("#myButton_post").click(function(){
         //performance
         $.post("https://felixwangsd.xyz/api/performance",
         { "cookieID": cookieID, "timing_obj": JSON.stringify(timing_obj), "start_time":start_time,
@@ -219,18 +218,12 @@ $(document).ready(function(){
         alert( "error" + "\ncookieID: " + cookieID+ "\nimg_enable: " + img_enable);
         });
 
-        $("#myButton_get").click(function(){
-        $.get("https://felixwangsd.xyz/api/static/"+get_cookie, function(data, status){
-        alert("Data: " + data + "\nStatus: " + status);
-        })
-        .fail(function(data, status) {
-        alert( "error" + "\nData: " + data + "\nStatus: " + status);
-        });
-        });
-    });
+}
 
 
-    
+/////////jquery post & get///////////
+$(document).ready(function(){
+    $("#myButton_post").click();
 });
 
 setInterval(function() {$.post("https://felixwangsd.xyz/api/activity",
