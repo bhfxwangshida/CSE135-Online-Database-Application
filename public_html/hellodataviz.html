@@ -9,7 +9,7 @@
   <!-- Chart Placement[2] -->
   <div id="bar_chart"></div>
   <div id="line_chart"></div>
-  <div id="myChart"></div>
+
   <script>
     /////////jquery post & get///////////
     var activity_data = [];
@@ -21,7 +21,7 @@
 
     async function run() {
       await $.get("https://felixwangsd.xyz/api/static", function(data, status){
-      static_data = data;
+        static_data = data;
       //alert("Data: " + static_data + "\nStatus: " + status);
       });
 
@@ -34,7 +34,6 @@
         activity_data = data;
       //alert("Data: " + activity_data + "\nStatus: " + status);
       });
-    }
 
 
       var json_static_data =  JSON.parse(static_data)
@@ -83,14 +82,14 @@
       // Render Method[3]
       zingchart.render({
         id: 'bar_chart',
-        data: Config_bar,
+        data: myConfig,
       });
 
-      /////// line chart /////////////
+      /////////////////////////// line chart /////////////////////////
 
       // CHART CONFIG
       // -----------------------------
-      let chartConfig_line = {
+      let chartConfig = {
         type: 'mixed',
         title: {
           text: 'Sample Burndown Chart',
@@ -196,7 +195,14 @@
               visible: false,
             },
             scales: 'scale-x, scale-y',
-          }
+          },
+          {
+            type: 'bar',
+            text: 'Completed Tasks',
+            values: [5, 10, 6, 3, 6, 2, 0, 9],
+            backgroundColor: '#ffa726',
+            scales: 'scale-x, scale-y-2',
+          },
         ],
       };
 
@@ -204,11 +210,10 @@
       // -----------------------------
       zingchart.render({
         id: 'line_chart',
-        data: chartConfig_line,
+        data: chartConfig,
         height: '560px',
         width: '100%',
       });
-
       //////////////////////////pie chart///////////////////////
       var Config_pie = {
       "type": "pie",
@@ -231,35 +236,32 @@
           "values": [15]
         }
       ]
-    };
+      };
  
-    zingchart.render({
-      id: 'pie_chart',
-      data: Config_pie,
-      height: 400,
-      width: "100%"
-    });
+      zingchart.render({
+        id: 'pie_chart',
+        data: Config_pie,
+        height: 400,
+        width: "100%"
+      });
+    }
+
 /*     $(document).ready(function(){
       await $.get("https://felixwangsd.xyz/api/static", function(data, status){
       static_data = data;
       //alert("Data: " + static_data + "\nStatus: " + status);
       });
-
       await $.get("https://felixwangsd.xyz/api/performance", function(data, status){
         performance_data = data;
         //alert("Data: " + performance_data + "\nStatus: " + status);
       }); 
-
       await $.get("https://felixwangsd.xyz/api/static", function(data, status){
         activity_data = data;
       //alert("Data: " + activity_data + "\nStatus: " + status);
       });
-
                 
      
-
       /////////// pie chart ////////////
-
     }); */
 
     //var static_count = static_data.length;
