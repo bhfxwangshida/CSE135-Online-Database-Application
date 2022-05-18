@@ -18,7 +18,8 @@
     var static_count = -1;
     var screenhight = -1;
     run();
-    async function getData() {
+
+    function run() {
       await $.get("https://felixwangsd.xyz/api/static", function(data, status){
         static_data = data;
       //alert("Data: " + static_data + "\nStatus: " + status);
@@ -33,18 +34,9 @@
         activity_data = data;
       //alert("Data: " + activity_data + "\nStatus: " + status);
       });
-    }
-
-    function run() {
-      getData();
       var static_count = static_data.length;
       var performance_count = performance_data.length;
       var activity_count = activity_data.length;
-      alert(activity_data);
-      alert(static_data);
-      alert(static_count);
-      alert(performance_count);
-      alert(activity_count); 
       
       let myConfig = {
         type: 'bar',
