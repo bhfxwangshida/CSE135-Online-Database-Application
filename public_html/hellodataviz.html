@@ -51,6 +51,8 @@
           activity_count++;
         //}
       }
+
+      var static_num = static_data.length;
       
       ////////////////bar chart/////////
       let myConfig = {
@@ -178,7 +180,7 @@
           {
             type: 'line',
             text: 'Remaining Tasks',
-            values: [35, 42, 67, 89, 25, 34, 67, 85].sort().reverse(),
+            values: [static_num, 42, 67, 89, 25, 34, 67, 85].sort().reverse(),
             lineColor: '#42a5f5',
             marker: {
               visible: 'false',
@@ -205,14 +207,7 @@
               visible: false,
             },
             scales: 'scale-x, scale-y',
-          },
-          {
-            type: 'bar',
-            text: 'Completed Tasks',
-            values: [5, 10, 6, 3, 6, 2, 0, 9],
-            backgroundColor: '#ffa726',
-            scales: 'scale-x, scale-y-2',
-          },
+          }
         ],
       };
 
