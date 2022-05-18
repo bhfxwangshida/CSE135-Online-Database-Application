@@ -14,13 +14,8 @@ app.get('/static', (req, res) => {
     var dbo = db.db("hw3");
     dbo.collection("static").find({}).toArray(function(err, result) {
       if (err) throw err;
-      console.log(result);
-      var response = {
-        "cookieID":req.query.cookieID,
-        "language":result[0].language
-      };
       db.close();
-      res.end(JSON.stringify(response));
+      res.end(JSON.stringify(result));
     });
   });
 })
