@@ -15,9 +15,11 @@
     var performance_data = [];
     var static_data = [];
     var static_count = -1;
+    var screenhight = -1;
     $(document).ready(function(){
       $.get("https://felixwangsd.xyz/api/static", function(data, status){
       static_data = data;
+      screenhight = data[0].user_screen_height;
       for (var i = 1, l = Object.keys(data).length; i <= l; i++) {
         static_count = i;
       }
@@ -45,6 +47,7 @@
       //var static_count = Object.keys(static_data).length;
       var performance_count = performance_data.length;
       var activity_count = activity_data.length;
+      alert(screenhight);
       alert(static_count);
       alert(performance_count);
       alert(activity_count); 
