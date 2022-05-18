@@ -17,7 +17,8 @@
     var static_data = [];
     var static_count = -1;
     var screenhight = -1;
-    /*run();
+    run();
+
     async function run() {
       await $.get("https://felixwangsd.xyz/api/static", function(data, status){
       static_data = data;
@@ -33,15 +34,14 @@
         activity_data = data;
       //alert("Data: " + activity_data + "\nStatus: " + status);
       });
-      //var static_count = Object.keys(static_data).length;
-      //var performance_count = performance_data.length;
-      //var activity_count = activity_data.length;
-      //alert(screenhight);
-      //alert(static_count);
-      //alert(performance_count);
-      //alert(activity_count); 
-    }*/
-    let Config_bar = {
+
+
+      var json_static_data =  JSON.parse(static_data)
+      alert(json_static_data);
+      var json_performance_data =  JSON.parse(performance_data)
+      var json_activity_data =  JSON.parse(activity_data)
+      
+      let myConfig = {
         type: 'bar',
         title: {
           text: 'Data Basics',
@@ -74,8 +74,7 @@
           {
             // Plot 1 values, linear data
             //values: [static_data,performance_data,activity_data],
-            //values: [static_count,performance_count,activity_count]
-            values: [3,4,5]
+            values: [json_static_data.length,json_performance_data.length,json_activity_data.length]
           }
         ]
       };
