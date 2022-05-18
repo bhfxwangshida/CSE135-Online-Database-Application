@@ -22,17 +22,13 @@
       .fail(function(static_data, status) {
       alert( "error" + "\nData: " + static_data + "\nStatus: " + status);
       });
-    });
-    $(document).ready(function(){
       $.get("https://felixwangsd.xyz/api/performance", function(data, status){
         performance_data = data;
         alert("Data: " + performance_data + "\nStatus: " + status);
       })
       .fail(function(performance_data, status) {
       alert( "error" + "\nData: " + performance_data + "\nStatus: " + status);
-      });
-    });
-    $(document).ready(function(){
+      }); 
       $.get("https://felixwangsd.xyz/api/static", function(data, status){
         activity_data = data;
       alert("Data: " + activity_data + "\nStatus: " + status);
@@ -45,9 +41,9 @@
           var static_count = static_data.length;
           var performance_count = performance_data.length;
           var activity_count = activity_data.length;
-          alert(static_count); 
-          alert(static_count); 
-          alert(static_count); 
+          alert(static_count.length); 
+          alert(static_count.length); 
+          alert(static_count.length); 
           let myConfig = {
             type: 'bar',
             title: {
