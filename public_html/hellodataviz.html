@@ -19,7 +19,7 @@
     var screenhight = -1;
     run();
 
-    function run() {
+    async function run() {
       await $.get("https://felixwangsd.xyz/api/static", function(data, status){
         static_data = data;
       //alert("Data: " + static_data + "\nStatus: " + status);
