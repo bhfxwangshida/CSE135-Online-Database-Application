@@ -51,10 +51,6 @@
           activity_count++;
         //}
       }
-
-      var static_num = static_data.length;
-      var performance_num = performance.length;
-      var activity_num = activity_data.length;
       
       ////////////////bar chart/////////
       let myConfig = {
@@ -180,7 +176,7 @@
           {
             type: 'line',
             text: 'number of visit unter different collections',
-            values: [static_num, erformance_num, activity_num].sort().reverse(),
+            values: [static_count,performance_count,activity_count].sort().reverse(),
             lineColor: '#42a5f5',
             marker: {
               visible: 'false',
