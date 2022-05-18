@@ -35,23 +35,24 @@
       });
       var static_count = 0;
       for (o of static_data) {
-        if (o != undefined) {
+        //if (o != undefined) {
           static_count++;
-        }
+        //}
       }
       var performance_count = 0;
       for (o of performance_data) {
-        if (o != undefined) {
+        //if (o != undefined) {
           performance_count++;
-        }
+        //}
       }
       var activity_count = 0;
       for (o of activity_data) {
-        if (o != undefined) {
+        //if (o != undefined) {
           activity_count++;
-        }
+        //}
       }
       
+      ////////////////bar chart/////////
       let myConfig = {
         type: 'bar',
         title: {
@@ -83,8 +84,6 @@
         },
         series: [
           {
-            // Plot 1 values, linear data
-            //values: [static_data,performance_data,activity_data],
             values: [static_count,performance_count,activity_count]
           }
         ]
