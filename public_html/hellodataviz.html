@@ -18,7 +18,9 @@
     $(document).ready(function(){
       $.get("https://felixwangsd.xyz/api/static", function(data, status){
       static_data = data;
-      static_count = static_data.length;
+      for (var i = 1, l = Object.keys(data).length; i <= l; i++) {
+        static_count = i;
+      }
       //alert("Data: " + static_data + "\nStatus: " + status);
       })
       .fail(function(static_data, status) {
