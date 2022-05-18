@@ -18,7 +18,6 @@
     var static_count = -1;
     var screenhight = -1;
     run();
-    alert(static_data);
 
     async function run() {
       await $.get("https://felixwangsd.xyz/api/static", function(data, status){
@@ -35,28 +34,27 @@
         activity_data = data;
       //alert("Data: " + activity_data + "\nStatus: " + status);
       });
-/*       var static_count = static_data.length;
-      var performance_count = performance_data.length;
-      var activity_count = activity_data.length; */
-      var static_count = 0;
-      for (o of static_data) {
-        alert(o);
-        if (o != undefined) {
-          static_count++;
-        }
+
+
+      var jsonObj =  JSON.parse(static_data)
+      var json_static_data = [];
+      for(var i =0 ;i < jsonObj.length;i++){
+        json_static_data[i] = jsonObj[i];
       }
-      var performance_count = 0;
-      for (o of performance_data) {
-        if (o != undefined) {
-          performance_count++;
-        }
+      var jsonObj2 =  JSON.parse(performance_data)
+      var json_performance_data = [];
+      for(var i =0 ;i < jsonObj2.length;i++){
+        json_performance_data[i] = jsonObj2[i];
       }
-      var activity_count = 0;
-      for (o of activity_data) {
-        if (o != undefined) {
-          activity_count++;
-        }
+      var jsonObj3 =  JSON.parse(activity_data)
+      var json_activity_data = [];
+      for(var i =0 ;i < jsonObj3.length;i++){
+        json_activity_data[i] = jsonObj3[i];
       }
+      var static_count = json_static_data.length;
+      var performance_count = json_performance_data.length;
+      var activity_count = json_activity_data.length; 
+
       
       let myConfig = {
         type: 'bar',
