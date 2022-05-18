@@ -11,9 +11,9 @@
 
   <script>
     /////////jquery post & get///////////
-    var activity_data;
-    var performance_data;
-    var static_data;
+    var activity_data = [];
+    var performance_data = [];
+    var static_data = [];
     $(document).ready(function(){
       $.get("https://felixwangsd.xyz/api/static", function(data, status){
       static_data = data;
@@ -42,10 +42,13 @@
       });
     });
 
-    //var static_count = Object.keys(static_data).length;
-    //var performance_count = Object.keys(performance_data).length;
-    //var activity_count = Object.keys(activity_data).length;
+    var static_count = static_data.length;
+    var performance_count = performance_data.length;
+    var activity_count = activity_data.length;
 
+    alert(static_count);
+
+  
     let myConfig = {
       type: 'bar',
       title: {
