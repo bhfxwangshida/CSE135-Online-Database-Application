@@ -20,12 +20,12 @@ app.get('/static', (req, res) => {
   });
 })
 
-app.get('/static/:cookieid', (req, res) => {
+app.get('/static/:id', (req, res) => {
   mongoClient.connect(url, (err, db) => {
     if (err) throw err;
     var dbo = db.db("hw3");
     dbo.collection("static").findOne(
-      {cookieID : req.params.cookieid},
+      {_id : req.params.id},
       function(err, result) {
         if (err) throw err;
         res.json(result);
