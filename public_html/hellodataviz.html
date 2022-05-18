@@ -96,7 +96,7 @@
         data: myConfig,
       });
 
-      /////// line chart /////////////
+      /////////////////////////// line chart /////////////////////////
 
       // CHART CONFIG
       // -----------------------------
@@ -225,29 +225,54 @@
         height: '560px',
         width: '100%',
       });
-
+      //////////////////////////pie chart///////////////////////
+      var Config_pie = {
+      "type": "pie",
+      "title": {
+        "text": "A Pie Chart"
+      },
+      "series": [{
+          "values": [59]
+        },
+        {
+          "values": [55]
+        },
+        {
+          "values": [30]
+        },
+        {
+          "values": [28]
+        },
+        {
+          "values": [15]
+        }
+      ]
+      };
+ 
+      zingchart.render({
+        id: 'pie_chart',
+        data: Config_pie,
+        height: 400,
+        width: "100%"
+      });
     }
+
 /*     $(document).ready(function(){
       await $.get("https://felixwangsd.xyz/api/static", function(data, status){
       static_data = data;
       //alert("Data: " + static_data + "\nStatus: " + status);
       });
-
       await $.get("https://felixwangsd.xyz/api/performance", function(data, status){
         performance_data = data;
         //alert("Data: " + performance_data + "\nStatus: " + status);
       }); 
-
       await $.get("https://felixwangsd.xyz/api/static", function(data, status){
         activity_data = data;
       //alert("Data: " + activity_data + "\nStatus: " + status);
       });
-
                 
      
-
       /////////// pie chart ////////////
-
     }); */
 
     //var static_count = static_data.length;
