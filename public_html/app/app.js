@@ -8,12 +8,11 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 var mongoClient = require('mongodb').MongoClient;
 var url = "mongodb+srv://adam:cse135Go@cluster0.e5yaj.mongodb.net/?retryWrites=true&w=majority";
 
-/*app.get('/static', (req, res) => {
+app.get('/static', (req, res) => {
   mongoClient.connect(url, (err, db) => {
     if (err) throw err;
     var dbo = db.db("hw3");
     var whereStr = {"cookieID":req.query.cookieID};
-    console.log(req.query.cookieID);
     dbo.collection("static").find(whereStr).toArray(function(err, result) {
       if (err) throw err;
       console.log(result);
@@ -25,7 +24,7 @@ var url = "mongodb+srv://adam:cse135Go@cluster0.e5yaj.mongodb.net/?retryWrites=t
       res.end(JSON.stringify(response));
     });
   });
-})*/
+})
 
 app.get('/static/:cookieid', (req, res) => {
   mongoClient.connect(url, (err, db) => {
