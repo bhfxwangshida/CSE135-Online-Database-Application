@@ -39,10 +39,10 @@
 
                 
       var static_count = Object.keys(static_data).length;
-      //var performance_count = performance_data.length;
+      var performance_count = performance_data.length;
       //var activity_count = activity_data.length;
+      alert(performance_count);
       alert(static_count); 
-      //alert(static_count); 
       //alert(static_count); 
       let myConfig = {
         type: 'bar',
@@ -90,6 +90,137 @@
 
     });
 
+/////// line chart /////////////
+// Main chart render location
+let chartId = 'myChart';
+
+// CHART CONFIG
+// -----------------------------
+let chartConfig = {
+  type: 'mixed',
+  title: {
+    text: 'Sample Burndown Chart',
+    align: 'left',
+    marginLeft: '23%',
+  },
+  legend: {
+    adjustLayout: true,
+    verticalAlign: 'middle',
+  },
+  plot: {
+    animation: {
+      delay: 500,
+      effect: 'ANIMATION_SLIDE_TOP',
+      method: 'ANIMATION_BOUNCE_EASE_OUT',
+      sequence: 'ANIMATION_NO_SEQUENCE',
+      speed: 975,
+    },
+  },
+  scaleX: {
+    labels: [
+      'Day 1',
+      'Day 2',
+      'Day 3',
+      'Day 4',
+      'Day 5',
+      'Day 6',
+      'Day 7',
+      'Day 8',
+    ], //one label for every datapoint
+  },
+  scaleY: {
+    label: {
+      text: 'Remaing effort (hours)',
+      fontSize: 14,
+    },
+    guide: {
+      // dashed lines
+      visible: false,
+    },
+  },
+  scaleY2: {
+    minValue: 0,
+    maxValue: 100,
+    step: 25, // can define scale step values or default
+    label: {
+      text: 'Remaing and completed tasks',
+      fontSize: 14,
+    },
+  },
+  crosshairX: {
+    lineColor: '#424242',
+    lineGapSize: '4px',
+    lineStyle: 'dotted',
+    plotLabel: {
+      backgroundColor: 'white',
+      bold: true,
+      borderColor: '#e3e3e3',
+      borderRadius: '5px',
+      fontColor: '#2f2f2f',
+      fontFamily: 'Lato',
+      fontSize: '12px',
+      padding: '15px',
+      shadow: true,
+      shadowAlpha: 0.2,
+      shadowBlur: 5,
+      shadowColor: '#a1a1a1',
+      shadowDistance: 4,
+      textAlign: 'left',
+    },
+    scaleLabel: {
+      backgroundColor: '#424242',
+    },
+  },
+  series: [
+    {
+      type: 'line',
+      text: 'Remaining Tasks',
+      values: [35, 42, 67, 89, 25, 34, 67, 85].sort().reverse(),
+      lineColor: '#42a5f5',
+      marker: {
+        visible: 'false',
+      },
+      scales: 'scale-x, scale-y',
+    },
+    {
+      type: 'line',
+      text: 'Remaining Effort',
+      values: [25, 32, 57, 79, 15, 24, 57, 75].sort().reverse(),
+      lineColor: '#5c6bc0',
+      marker: {
+        type: 'square',
+        backgroundColor: '#5c6bc0',
+      },
+      scales: 'scale-x, scale-y',
+    },
+    {
+      type: 'line',
+      text: 'Completed Tasks',
+      values: [90, 80, 70, 60, 50, 40, 30, 20],
+      lineColor: '#66bb6a',
+      marker: {
+        visible: false,
+      },
+      scales: 'scale-x, scale-y',
+    },
+    {
+      type: 'bar',
+      text: 'Completed Tasks',
+      values: [5, 10, 6, 3, 6, 2, 0, 9],
+      backgroundColor: '#ffa726',
+      scales: 'scale-x, scale-y-2',
+    },
+  ],
+};
+
+// RENDER CHART
+// -----------------------------
+zingchart.render({
+  id: chartId,
+  data: chartConfig,
+  height: '560px',
+  width: '100%',
+});
     //var static_count = static_data.length;
     //var performance_count = performance_data.length;
     //var activity_count = activity_data.length;
