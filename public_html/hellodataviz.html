@@ -172,8 +172,9 @@
         series: [
           {
             type: 'line',
-            text: 'number of visit unter different collections',
-            values: [static_count,performance_count,activity_count].sort().reverse(),
+            text: 'users screen width',
+            values: [static_data[0].user_screen_width, static_data[1].user_screen_width, static_data[2].user_screen_width, static_data[3].user_screen_width,
+            , static_data[4].user_screen_width, static_data[5].user_screen_width],
             lineColor: '#42a5f5',
             marker: {
               visible: 'false',
@@ -184,7 +185,7 @@
             type: 'line',
             text: 'users windows width',
             values: [static_data[0].user_window_width, static_data[1].user_window_width, static_data[2].user_window_width, static_data[3].user_window_width,
-            , static_data[4].user_window_width, static_data[5].user_window_width].sort().reverse(),
+            , static_data[4].user_window_width, static_data[5].user_window_width],
             lineColor: '#5c6bc0',
             marker: {
               type: 'square',
