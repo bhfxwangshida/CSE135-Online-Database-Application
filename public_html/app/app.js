@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 var mongoClient = require('mongodb').MongoClient;
+var ObjectId = require('mongodb').ObjectId; 
 var url = "mongodb+srv://adam:cse135Go@cluster0.e5yaj.mongodb.net/?retryWrites=true&w=majority";
 
 app.get('/static', (req, res) => {
@@ -20,12 +21,12 @@ app.get('/static', (req, res) => {
   });
 })
 
-app.get('/static/:cookieid', (req, res) => {
+app.get('/static/:id', (req, res) => {
   mongoClient.connect(url, (err, db) => {
     if (err) throw err;
     var dbo = db.db("hw3");
-    dbo.collection("static").findOne(
-      {cookieID : req.params.cookieid},
+    dbo.collection("static").find(
+      {_id : new ObjectId(req.params.id)},
       function(err, result) {
         if (err) throw err;
         res.json(result);
