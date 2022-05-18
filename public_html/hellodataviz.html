@@ -17,25 +17,23 @@
     var static_data = [];
     var static_count = -1;
     var screenhight = -1;
-    $(document).ready(function(){
+    run();
+    async function run() {
       await $.get("https://felixwangsd.xyz/api/static", function(data, status){
       static_data = data;
       //alert("Data: " + static_data + "\nStatus: " + status);
-      }).promise();
+      });
 
       await $.get("https://felixwangsd.xyz/api/performance", function(data, status){
         performance_data = data;
         //alert("Data: " + performance_data + "\nStatus: " + status);
-      })
-      .promise(); 
+      }); 
 
       await $.get("https://felixwangsd.xyz/api/static", function(data, status){
         activity_data = data;
       //alert("Data: " + activity_data + "\nStatus: " + status);
-      }).promise();
-
-                
-      //var static_count = Object.keys(static_data).length;
+      });
+      var static_count = Object.keys(static_data).length;
       var performance_count = performance_data.length;
       var activity_count = activity_data.length;
       alert(screenhight);
@@ -217,10 +215,29 @@
         width: '100%',
       });
 
+    }
+/*     $(document).ready(function(){
+      await $.get("https://felixwangsd.xyz/api/static", function(data, status){
+      static_data = data;
+      //alert("Data: " + static_data + "\nStatus: " + status);
+      });
+
+      await $.get("https://felixwangsd.xyz/api/performance", function(data, status){
+        performance_data = data;
+        //alert("Data: " + performance_data + "\nStatus: " + status);
+      }); 
+
+      await $.get("https://felixwangsd.xyz/api/static", function(data, status){
+        activity_data = data;
+      //alert("Data: " + activity_data + "\nStatus: " + status);
+      });
+
+                
+     
 
       /////////// pie chart ////////////
 
-    });
+    }); */
 
     //var static_count = static_data.length;
     //var performance_count = performance_data.length;
