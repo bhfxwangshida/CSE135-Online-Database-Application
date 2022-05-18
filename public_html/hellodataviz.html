@@ -53,12 +53,14 @@
       }
 
       var static_num = static_data.length;
+      var performance_num = performance.length;
+      var activity_num = activity_data.length;
       
       ////////////////bar chart/////////
       let myConfig = {
         type: 'bar',
         title: {
-          text: 'Data Basics',
+          text: 'Json entries number',
           fontSize: 24,
         },
         legend: {
@@ -66,13 +68,11 @@
         },
         scaleX: {
           // Set scale label
-          label: { text: 'data type' },
-          // Convert text on scale indices
           labels: [ 'static', 'performance', 'activity' ]
         },
         scaleY: {
           // Scale label with unicode character
-          label: { text: 'data size' }
+          label: { text: 'entry number' }
         },
         plot: {
           // Animation docs here:
@@ -179,8 +179,8 @@
         series: [
           {
             type: 'line',
-            text: 'Remaining Tasks',
-            values: [static_num, 42, 67, 89, 25, 34, 67, 85].sort().reverse(),
+            text: 'number of visit unter different collections',
+            values: [static_num, erformance_num, activity_num].sort().reverse(),
             lineColor: '#42a5f5',
             marker: {
               visible: 'false',
