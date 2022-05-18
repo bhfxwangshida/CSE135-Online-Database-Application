@@ -36,27 +36,10 @@
       });
 
 
-      var jsonObj =  JSON.parse(static_data)
-      alert(jsonObj);
-      var json_static_data = [];
-      for(var i = 0 ;i < jsonObj.length;i++){
-        alert(jsonObj[i]);
-        json_static_data[i] = jsonObj[i];
-      }
-      var jsonObj2 =  JSON.parse(performance_data)
-      var json_performance_data = [];
-      for(var i = 0 ;i < jsonObj2.length;i++){
-        json_performance_data[i] = jsonObj2[i];
-      }
-      var jsonObj3 =  JSON.parse(activity_data)
-      var json_activity_data = [];
-      for(var i = 0 ;i < jsonObj3.length;i++){
-        json_activity_data[i] = jsonObj3[i];
-      }
-      var static_count = json_static_data.length;
-      var performance_count = json_performance_data.length;
-      var activity_count = json_activity_data.length; 
-
+      var json_static_data =  JSON.parse(static_data)
+      alert(json_static_data);
+      var json_performance_data =  JSON.parse(performance_data)
+      var json_activity_data =  JSON.parse(activity_data)
       
       let myConfig = {
         type: 'bar',
@@ -91,7 +74,7 @@
           {
             // Plot 1 values, linear data
             //values: [static_data,performance_data,activity_data],
-            values: [static_count,performance_count,activity_count]
+            values: [json_static_data.length,json_performance_data.length,json_activity_data.length]
           }
         ]
       };
