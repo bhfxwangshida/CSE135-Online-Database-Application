@@ -16,7 +16,7 @@ app.get('/static', (req, res) => {
     dbo.collection("static").find({}).toArray(function(err, result) {
       if (err) throw err;
       db.close();
-      res.end(result);
+      res.json(result);
     });
   });
 })
@@ -120,7 +120,7 @@ app.get('/performance', (req, res) => {
     dbo.collection("performance").find({}).toArray(function(err, result) {
       if (err) throw err;
       db.close();
-      res.end(result);
+      res.json(result);
     });
   });
 })
@@ -213,7 +213,7 @@ app.get('/activity', (req, res) => {
     dbo.collection("activity").find({}).toArray(function(err, result) {
       if (err) throw err;
       db.close();
-      res.end(result);
+      res.json(result);
     });
   });
 })
