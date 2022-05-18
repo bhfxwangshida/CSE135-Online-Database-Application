@@ -12,8 +12,7 @@ app.get('/static', (req, res) => {
   mongoClient.connect(url, (err, db) => {
     if (err) throw err;
     var dbo = db.db("hw3");
-    var whereStr = {"cookieID":req.query.cookieID};
-    dbo.collection("static").find(whereStr).toArray(function(err, result) {
+    dbo.collection("static").find({}).toArray(function(err, result) {
       if (err) throw err;
       console.log(result);
       var response = {
