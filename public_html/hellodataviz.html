@@ -14,7 +14,7 @@
     var activity_data;
     var performance_data;
     var static_data;
-    $(document).ready(function(){
+    //$(document).ready(function(){
       $.get("https://felixwangsd.xyz/api/static", function(data, status){
       static_data = data;
       alert("Data: " + static_data + "\nStatus: " + status);
@@ -22,8 +22,8 @@
       .fail(function(static_data, status) {
       alert( "error" + "\nData: " + static_data + "\nStatus: " + status);
       });
-    });
-    $(document).ready(function(){
+    //});
+    //$(document).ready(function(){
       $.get("https://felixwangsd.xyz/api/performance", function(data, status){
         performance_data = data;
         alert("Data: " + performance_data + "\nStatus: " + status);
@@ -31,8 +31,8 @@
       .fail(function(performance_data, status) {
       alert( "error" + "\nData: " + performance_data + "\nStatus: " + status);
       });
-    });
-    $(document).ready(function(){
+    //});
+    //$(document).ready(function(){
       $.get("https://felixwangsd.xyz/api/static", function(data, status){
         activity_data = data;
       alert("Data: " + activity_data + "\nStatus: " + status);
@@ -40,7 +40,7 @@
       .fail(function(activity_data, status) {
       alert( "error" + "\nData: " + activity_data + "\nStatus: " + status);
       });
-    });
+    //});
 
     //var static_count = Object.keys(static_data).length;
     //var performance_count = Object.keys(performance_data).length;
