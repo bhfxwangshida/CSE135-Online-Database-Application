@@ -17,24 +17,24 @@
     $(document).ready(function(){
       $.get("https://felixwangsd.xyz/api/static", function(data, status){
       static_data = data;
-      alert("Data: " + static_data + "\nStatus: " + status);
+      //alert("Data: " + static_data + "\nStatus: " + status);
       })
       .fail(function(static_data, status) {
-      alert( "error" + "\nData: " + static_data + "\nStatus: " + status);
+      //alert( "error" + "\nData: " + static_data + "\nStatus: " + status);
       });
       $.get("https://felixwangsd.xyz/api/performance", function(data, status){
         performance_data = data;
-        alert("Data: " + performance_data + "\nStatus: " + status);
+        //alert("Data: " + performance_data + "\nStatus: " + status);
       })
       .fail(function(performance_data, status) {
-      alert( "error" + "\nData: " + performance_data + "\nStatus: " + status);
+      //alert( "error" + "\nData: " + performance_data + "\nStatus: " + status);
       }); 
       $.get("https://felixwangsd.xyz/api/static", function(data, status){
         activity_data = data;
-      alert("Data: " + activity_data + "\nStatus: " + status);
+      //alert("Data: " + activity_data + "\nStatus: " + status);
       })
       .fail(function(activity_data, status) {
-      alert( "error" + "\nData: " + activity_data + "\nStatus: " + status);
+      //alert( "error" + "\nData: " + activity_data + "\nStatus: " + status);
       });
 
                 
@@ -55,13 +55,13 @@
         },
         scaleX: {
           // Set scale label
-          label: { text: 'data volume' },
+          label: { text: 'data type' },
           // Convert text on scale indices
           labels: [ 'static', 'performance', 'activity' ]
         },
         scaleY: {
           // Scale label with unicode character
-          label: { text: 'sizes' }
+          label: { text: 'data size' }
         },
         plot: {
           // Animation docs here:
@@ -77,18 +77,7 @@
           {
             // Plot 1 values, linear data
             //values: [static_data,performance_data,activity_data],
-            values: [35,42,33],
-            text: 'Week 1',
-          },
-          {
-            // Plot 2 values, linear data
-            values: [35,42,33],
-            text: 'Week 2'
-          },
-          {
-            // Plot 2 values, linear data
-            values: [15,22,13],
-            text: 'Week 3'
+            values: [static_count,performance_count,activity_count]
           }
         ]
       };
