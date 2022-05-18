@@ -14,9 +14,11 @@
     var activity_data = [];
     var performance_data = [];
     var static_data = [];
+    var static_count = -1;
     $(document).ready(function(){
       $.get("https://felixwangsd.xyz/api/static", function(data, status){
       static_data = data;
+      static_count = Object.keys(static_data).length;
       //alert("Data: " + static_data + "\nStatus: " + status);
       })
       .fail(function(static_data, status) {
@@ -38,7 +40,7 @@
       });
 
                 
-      var static_count = Object.keys(static_data).length;
+      //var static_count = Object.keys(static_data).length;
       var performance_count = performance_data.length;
       var activity_count = activity_data.length;
       alert(static_count);
@@ -219,6 +221,10 @@ zingchart.render({
   height: '560px',
   width: '100%',
 });
+
+
+/////////// pie chart ////////////
+
     //var static_count = static_data.length;
     //var performance_count = performance_data.length;
     //var activity_count = activity_data.length;
