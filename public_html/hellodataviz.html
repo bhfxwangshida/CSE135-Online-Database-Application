@@ -11,9 +11,9 @@
 
   <script>
     /////////jquery post & get///////////
-    var activity_data;
-    var performance_data;
-    var static_data;
+    var activity_data = [];
+    var performance_data = [];
+    var static_data = [];
     $(document).ready(function(){
       $.get("https://felixwangsd.xyz/api/static", function(data, status){
       static_data = data;
