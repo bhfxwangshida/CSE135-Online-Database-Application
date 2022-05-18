@@ -37,15 +37,69 @@ app.get('/static/:id', (req, res) => {
   });
 })
 
+app.delete('/static/:id', (req, res) => {
+  mongoClient.connect(url, (err, db) => {
+    if (err) throw err;
+    var dbo = db.db("hw3");
+    var o_id = new ObjectId(req.params.id);
+    dbo.collection("static").deleteOne(
+      {_id : o_id},
+      function(err, result) {
+        if (err) throw err;
+        db.close();
+        res.end(JSON.stringify(result));
+        
+      }
+    );
+  });
+})
+
+app.put('/static/:id', (req, res) => {
+  mongoClient.connect(url, (err, db) => {
+    if (err) throw err;
+    var dbo = db.db("hw3");
+    var o_id = new ObjectId(req.params.id);
+    var updateStr = {$set: {
+      cookieID: req.body.cookieID,
+      language: req.body.language,
+      img_enable: req.body.img_enable,
+      cookie_enable: req.body.cookie_enable,
+      user_agent: req.body.user_agent,
+      user_screen_height: req.body.user_screen_height,
+      user_screen_width: req.body.user_screen_width,
+      user_window_height: req.body.user_window_height,
+      user_window_width: req.body.user_window_width,
+      user_conn_type: req.body.user_conn_type
+    }};
+    dbo.collection("static").updateOne(
+      {_id : o_id}, updateStr, 
+      function(err, result) {
+        if (err) throw err;
+        db.close();
+        res.end(JSON.stringify(result));
+      }
+    );
+  });
+})
+
+
 app.post('/static', urlencodedParser, function (req, res) {
 
   mongoClient.connect(url, function(err, db) {
       if (err) throw err;
       var dbo = db.db("hw3");
-      var staticinfo = { cookieID: req.body.cookieID, language: req.body.language, img_enable: req.body.img_enable,
-      cookie_enable: req.body.cookie_enable, user_agent: req.body.user_agent, user_screen_height: req.body.user_screen_height,
-      user_screen_width: req.body.user_screen_width, user_window_height: req.body.user_window_height,
-      user_window_width: req.body.user_window_width, user_conn_type: req.body.user_conn_type};
+      var staticinfo = { 
+        cookieID: req.body.cookieID,
+        language: req.body.language,
+        img_enable: req.body.img_enable,
+        cookie_enable: req.body.cookie_enable,
+        user_agent: req.body.user_agent,
+        user_screen_height: req.body.user_screen_height,
+        user_screen_width: req.body.user_screen_width,
+        user_window_height: req.body.user_window_height,
+        user_window_width: req.body.user_window_width,
+        user_conn_type: req.body.user_conn_type
+      };
       dbo.collection("static").insertOne(staticinfo, function(err, result) {
           if (err) throw err;
           var response = {
