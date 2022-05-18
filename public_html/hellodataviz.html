@@ -15,7 +15,6 @@
     var activity_data = [];
     var performance_data = [];
     var static_data = [];
-    var static_count = -1;
     var screenhight = -1;
     run();
 
@@ -35,11 +34,9 @@
       //alert("Data: " + activity_data + "\nStatus: " + status);
       });
 
-
-      var json_static_data =  JSON.parse(static_data)
-      alert(json_static_data);
-      var json_performance_data =  JSON.parse(performance_data)
-      var json_activity_data =  JSON.parse(activity_data)
+      var static_count = static_data.length;
+      var performance_count = performance_data.length;
+      var activity_count = activity_data.length;
       
       let myConfig = {
         type: 'bar',
@@ -74,7 +71,7 @@
           {
             // Plot 1 values, linear data
             //values: [static_data,performance_data,activity_data],
-            values: [json_static_data.length,json_performance_data.length,json_activity_data.length]
+            values: [static_count,performance_count,activity_count]
           }
         ]
       };
