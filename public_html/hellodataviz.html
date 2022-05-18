@@ -14,7 +14,7 @@
     var activity_data;
     var performance_data;
     var static_data;
-    //$(document).ready(function(){
+    $(document).ready(function(){
       $.get("https://felixwangsd.xyz/api/static", function(data, status){
       static_data = data;
       alert("Data: " + static_data + "\nStatus: " + status);
@@ -22,17 +22,13 @@
       .fail(function(static_data, status) {
       alert( "error" + "\nData: " + static_data + "\nStatus: " + status);
       });
-    //});
-    //$(document).ready(function(){
       $.get("https://felixwangsd.xyz/api/performance", function(data, status){
         performance_data = data;
         alert("Data: " + performance_data + "\nStatus: " + status);
       })
       .fail(function(performance_data, status) {
       alert( "error" + "\nData: " + performance_data + "\nStatus: " + status);
-      });
-    //});
-    //$(document).ready(function(){
+      }); 
       $.get("https://felixwangsd.xyz/api/static", function(data, status){
         activity_data = data;
       alert("Data: " + activity_data + "\nStatus: " + status);
@@ -40,69 +36,76 @@
       .fail(function(activity_data, status) {
       alert( "error" + "\nData: " + activity_data + "\nStatus: " + status);
       });
-    //});
+
+                
+      var static_count = static_data.length;
+      var performance_count = performance_data.length;
+      var activity_count = activity_data.length;
+      alert(static_count.length); 
+      alert(static_count.length); 
+      alert(static_count.length); 
+      let myConfig = {
+        type: 'bar',
+        title: {
+          text: 'Data Basics',
+          fontSize: 24,
+        },
+        legend: {
+          draggable: true,
+        },
+        scaleX: {
+          // Set scale label
+          label: { text: 'data volume' },
+          // Convert text on scale indices
+          labels: [ 'static', 'performance', 'activity' ]
+        },
+        scaleY: {
+          // Scale label with unicode character
+          label: { text: 'sizes' }
+        },
+        plot: {
+          // Animation docs here:
+          // https://www.zingchart.com/docs/tutorials/styling/animation#effect
+          animation: {
+            effect: 'ANIMATION_EXPAND_BOTTOM',
+            method: 'ANIMATION_STRONG_EASE_OUT',
+            sequence: 'ANIMATION_BY_NODE',
+            speed: 275,
+          }
+        },
+        series: [
+          {
+            // Plot 1 values, linear data
+            //values: [static_data,performance_data,activity_data],
+            values: [35,42,33],
+            text: 'Week 1',
+          },
+          {
+            // Plot 2 values, linear data
+            values: [35,42,33],
+            text: 'Week 2'
+          },
+          {
+            // Plot 2 values, linear data
+            values: [15,22,13],
+            text: 'Week 3'
+          }
+        ]
+      };
+
+      // Render Method[3]
+      zingchart.render({
+        id: 'bar_chart',
+        data: myConfig,
+      });
+
+    });
 
     //var static_count = static_data.length;
     //var performance_count = performance_data.length;
     //var activity_count = activity_data.length;
 
-    alert(static_data.length);
 
-  
-    let myConfig = {
-      type: 'bar',
-      title: {
-        text: 'Data Basics',
-        fontSize: 24,
-      },
-      legend: {
-        draggable: true,
-      },
-      scaleX: {
-        // Set scale label
-        label: { text: 'data volume' },
-        // Convert text on scale indices
-        labels: [ 'static', 'performance', 'activity' ]
-      },
-      scaleY: {
-        // Scale label with unicode character
-        label: { text: 'sizes' }
-      },
-      plot: {
-        // Animation docs here:
-        // https://www.zingchart.com/docs/tutorials/styling/animation#effect
-        animation: {
-          effect: 'ANIMATION_EXPAND_BOTTOM',
-          method: 'ANIMATION_STRONG_EASE_OUT',
-          sequence: 'ANIMATION_BY_NODE',
-          speed: 275,
-        }
-      },
-      series: [
-        {
-          // Plot 1 values, linear data
-          //values: [static_data,performance_data,activity_data],
-          values: [35,42,33],
-          text: 'Week 1',
-        },
-        {
-          // Plot 2 values, linear data
-          values: [35,42,33],
-          text: 'Week 2'
-        },
-        {
-          // Plot 2 values, linear data
-          values: [15,22,13],
-          text: 'Week 3'
-        }
-      ]
-    };
-
-    // Render Method[3]
-    zingchart.render({
-      id: 'bar_chart',
-      data: myConfig,
-    });
   </script>
 </body>
 </html>
