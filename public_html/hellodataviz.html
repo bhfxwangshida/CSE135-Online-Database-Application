@@ -38,21 +38,21 @@
 /*       var static_count = static_data.length;
       var performance_count = performance_data.length;
       var activity_count = activity_data.length; */
-      setTimeout(function(){
-        var static_count = 0;
-      for (o in static_data) {
+      var static_count = 0;
+      for (o of static_data) {
+        alert(o);
         if (o != undefined) {
           static_count++;
         }
       }
       var performance_count = 0;
-      for (o in performance_data) {
+      for (o of performance_data) {
         if (o != undefined) {
           performance_count++;
         }
       }
       var activity_count = 0;
-      for (o in activity_data) {
+      for (o of activity_data) {
         if (o != undefined) {
           activity_count++;
         }
@@ -231,8 +231,6 @@
         height: '560px',
         width: '100%',
       });
-      }, 10000)
-      
 
     }
 /*     $(document).ready(function(){
