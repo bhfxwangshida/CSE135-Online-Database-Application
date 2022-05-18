@@ -25,8 +25,9 @@ app.get('/static/:id', (req, res) => {
   mongoClient.connect(url, (err, db) => {
     if (err) throw err;
     var dbo = db.db("hw3");
+    var o_id = new ObjectId(req.params.id);
     dbo.collection("static").find(
-      {_id : new ObjectId(req.params.id)},
+      {_id : o_id}).toArray(
       function(err, result) {
         if (err) throw err;
         res.json(result);
