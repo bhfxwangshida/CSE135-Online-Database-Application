@@ -9,6 +9,18 @@ var mongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectId; 
 var url = "mongodb+srv://adam:cse135Go@cluster0.e5yaj.mongodb.net/?retryWrites=true&w=majority";
 
+app.get('/user', (req, res) => {
+  mongoClient.connect(url, (err, db) => {
+    if (err) throw err;
+    var dbo = db.db("hw4");
+    dbo.collection("user").find({}).toArray(function(err, result) {
+      if (err) throw err;
+      db.close();
+      res.json(result);
+    });
+  });
+})
+
 app.get('/static', (req, res) => {
   mongoClient.connect(url, (err, db) => {
     if (err) throw err;
